@@ -49,5 +49,30 @@ def password_strength_checker(input_password):
 
 # password_strength_checker(input('Enter a password: '))   
 
-add = lambda x: x+1
-print(add(3))
+def task_manager():
+    tasks = []
+    options = print('''
+    1: Add Task
+    2: View Tasks
+    3: Mark Task as Done
+    4: Delete Task
+    5: Quit''')
+    print(options)
+    options_choice = int(input('Choose one of the options: '))
+    while options_choice != 5:
+        options_choice = int(input('Choose one of the options: '))
+        if options_choice == 1:
+            add_task = input('What is the name of the task you would like to add? ')
+            tasks.append(add_task)
+        elif options_choice == 2:
+            print(tasks)
+        elif options_choice == 3:
+            mark_as_done = int(input('At what index item would you like to mark as done(start with 0) '))
+            tasks.remove(mark_as_done)
+        elif options_choice == 4:
+            delete_task = int(input('At what index item would you like to remove an item(start with 0) '))
+            tasks.remove(delete_task)
+        elif options_choice == 5:
+            break
+
+task_manager()
