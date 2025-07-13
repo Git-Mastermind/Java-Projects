@@ -255,7 +255,9 @@ def guess_the_number():
                 if guess == number:
                     print(f'You win! The number was {number}!')
 
-guess_the_number()
+#guess_the_number()
+
+
     
     
         

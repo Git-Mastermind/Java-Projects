@@ -1,9 +1,13 @@
-class GoodPerson:
-    def __init__(self, name):
-        self.name = name
-        print(f'Hello {name}!')
-    def bye(self):
-        print('Bye!')
+class Dog:
+    def speak():
+        print('Woof!')
 
-eshan = GoodPerson('Eshan')
+class Cat:
+    def speak():
+        print('Meow!')
+
+dog = Dog()
+cat = Cat()
+for animal in [dog, cat]:
+    animal.speak()
 
