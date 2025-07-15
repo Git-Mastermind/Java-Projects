@@ -1,13 +1,7 @@
-class Dog:
-    def speak():
-        print('Woof!')
+import pandas as pd
 
-class Cat:
-    def speak():
-        print('Meow!')
+ages = pd.Series([12,13,14], index=['Eshan', 'Ali', 'Lily'])
+print(ages)
 
-dog = Dog()
-cat = Cat()
-for animal in [dog, cat]:
-    animal.speak()
+
 
