@@ -1,7 +1,7 @@
-import pandas as pd
+file = open('data.csv', 'r')
+reading = file.read()
+print(reading)
 
-ages = pd.Series([12,13,14], index=['Eshan', 'Ali', 'Lily'])
-print(ages)
 
 
 

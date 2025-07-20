@@ -51,7 +51,10 @@ pandas_read_csv()
 
 def pandas_clean_cells():
     df = pd.read_csv('data.csv')
-    df.fillna(69, inplace=True)
+    df.dropna(inplace=True)
     print(df.to_string())
 
-pandas_clean_cells()
+# pandas_clean_cells()
+
+
+
