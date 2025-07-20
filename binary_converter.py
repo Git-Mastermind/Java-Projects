@@ -1,4 +1,4 @@
-def deci_to_binary(number):
+def decimal_to_binary(number):
     binary_answer = []
     if number == 0:
         print(0)
@@ -10,4 +10,4 @@ def deci_to_binary(number):
 
         print(*binary_answer[::-1])
 
-deci_to_binary(int(input('Enter a number: ')))
+decimal_to_binary(int(input('Enter a number: ')))
