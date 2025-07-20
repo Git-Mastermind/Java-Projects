@@ -1,22 +1,28 @@
-def logarithm_calculator(log_arg, base):
-    log_ans = 0
-    if_break = False
-    while log_arg > 1:
-        if log_arg % base == 0:
-            log_arg = log_arg // base
-            log_ans += 1
+def logarithm_calculator(argument, base):
+    answer = 0
+    is_perfect_log = False
+
+    while argument > 1:
+        if argument % base == 0:
+            argument = argument // base
+            answer += 1
+
         else:
             print('Not perfect logarithm')
-            if_break = True
+            is_perfect_log = True
             break
-    if if_break == False:
-        print(log_ans)
+
+    if is_perfect_log == False:
+        print(answer)
     
         
+argument = int(input('Enter the logarithm argument: '))
+base = int(input('Enter a base: '))
 
-        
+# logarithm_calculator(argument, base)
 
+def print_text(text):
+    return print(text)
 
-
-logarithm_calculator(int(input('Enter the logarithm argument: ')), int(input('Enter a base: ')))
+print_text('Eshan')
 
