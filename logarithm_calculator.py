@@ -19,10 +19,7 @@ def logarithm_calculator(argument, base):
 argument = int(input('Enter the logarithm argument: '))
 base = int(input('Enter a base: '))
 
-# logarithm_calculator(argument, base)
+logarithm_calculator(argument, base)
 
-def print_text(text):
-    return print(text)
 
-print_text('Eshan')
 
