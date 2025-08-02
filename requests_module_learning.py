@@ -180,5 +180,116 @@ def country_facts_lookup():
 
 
 # country_facts_lookup()
+
+def animal_rescue():
+    animal_name = input('Enter animal name: ')
+    animal_type = input('Enter animal type: ')
+    data = {
+        'name':animal_name,
+        'type':animal_type
+    }
+    post = requests.post('https://jsonplaceholder.typicode.com/posts', json=data)
+    print(post.json())
+    if post.status_code == 201:
+        print('✅ Animal Rescued Successfully!')
+    else:
+        print(f'❌ Something went wrong: {post.status_code}')
+
+# animal_rescue()
+
+def pet_adoption_form():
+    print('👋 Welcome to the Pet Adoption Center!')
+    name = input("What's your name? ")
+    animal = input('WHat kind of pet would you like to adopt? ')
+    data = {
+        'name':name,
+        'animal':animal
+    }
+    url = 'https://jsonplaceholder.typicode.com/posts'
+    post = requests.post(url, json=data)
+    if post.status_code == 201:
+        print(f'✅ Thanks {name}! Your request to adopt a {animal} has been submitted!')
+        see_code = input('Would you like to see? ').lower()
+        if see_code == 'yes':
+            print(post.json())
+        else:
+            print('Good Bye!')
+
+# pet_adoption_form()
+
+def dragon_registration_system():
+    print('🐉 Welcome to Dragon Registration System!')
+    dragon_name = input("Enter dragon name: ")
+    dragon_type = input("Enter dragon type: ")
+    power_level = int(input("Enter power level: "))
+    license_color = input('Choose license color(gold, silver bronze): ').lower()
+    if 1 <= power_level <= 100:
+        if license_color == 'gold' or license_color == 'silver' or license_color == 'bronze':
+            data = {
+                'dragon_name' : dragon_name,
+                'dragon_type' : dragon_type,
+                'power' : power_level,
+                'license' : license_color
+            }
+            url = 'https://jsonplaceholder.typicode.com/posts'
+            post = requests.post(url, json=data)
+            if post.status_code == 201:
+                print('✅ Dragon registered successfully!')
+                see_code = input('Would you like to see the receipt? ').lower()
+                if see_code == 'yes':
+                    print(post.json())
+                else:
+                    print('GoodBye!')
+            else:
+                print('❌ Something went wrong')
+        else:
+            print('Invalid license color!')
+    else:
+        print('Invalid power level domain!')
+
+# dragon_registration_system()
+
+def dragon_registration_system_cleanedup():
+    print('🐉 Welcome to Dragon Registrion System!')
+    dragon_name = input('Enter dragon name: ')
+    dragon_type = input('Enter dragon type: ')
+    while True:
+        try:
+            power_level = int(input('Enter power level(1-1000): '))
+            if 1 <= power_level <= 1000:
+                break
+            else:
+                print('❌ Invalid Domain! Please try again!')
+        except ValueError:
+            print('❌ Invalid Input! Please try again!')
+    valid_license_colors = ['gold', 'silver', 'bronze']
+    while True:
+        license_color = input('Enter license color(gold, silver, bronze): ').lower()
+        if license_color in valid_license_colors:
+            break
+        else:
+            print('❌ Invalid license color! Please try again!')
+    data = {
+        'dragon_name':dragon_name,
+        'dragon_type':dragon_type,
+        'license_color':license_color,
+        'power_level':power_level
+    }
+    url = 'https://jsonplaceholder.typicode.com/posts'
+    post_info = requests.post(url, json=data)
+    if post_info.status_code == 201:
+        print('✅ Dragon Registered Successfully!')
+        see_code = input('Would you like to see the receipt? ').lower()
+        if see_code == 'yes':
+            print(post_info.json())
+        else:
+            print('GoodBye!')
+    else:
+        print(f'❌ Something went wrong: {post_info.status_code}')
+
+
+dragon_registration_system_cleanedup()
+        
+
     
 
