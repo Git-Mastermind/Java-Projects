@@ -288,7 +288,7 @@ def dragon_registration_system_cleanedup():
         print(f'❌ Something went wrong: {post_info.status_code}')
 
 
-dragon_registration_system_cleanedup()
+# dragon_registration_system_cleanedup()
         
 
     
