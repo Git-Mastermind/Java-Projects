@@ -289,7 +289,51 @@ def dragon_registration_system_cleanedup():
 
 
 # dragon_registration_system_cleanedup()
-        
+
+def update_data():
+    url = 'https://jsonplaceholder.typicode.com/posts/1'
+    updated_info = {
+        'userId':1,
+        'Id':1,
+        'title':'updating this post!',
+        'body':'This is the updated content of the post'
+    }
+    put_info = requests.put(url, json=updated_info)
+    print(put_info.text)
+    if put_info.status_code == 200:
+        print(f'✅ Everything went smoothly: {put_info.status_code}')
+    else:
+        print(f'❌ Something went wrong: {put_info.status_code}')
+
+# update_data()
+
+def delete_data():
+    url = 'https://jsonplaceholder.typicode.com/posts/1'
+    delete_data = requests.delete(url)
+    print(delete_data.text)
+    if delete_data.status_code == 200:
+        print(f'✅ Everything went smoothly: {delete_data.status_code}')
+    else:
+        print(f'❌ Something went wrong: {delete_data.status_code}')
+
+# delete_data()
+
+def update_rocket_info():
+    url = 'https://jsonplaceholder.typicode.com/posts/2'
+    data = {
+        'userId':2,
+        'Id':2,
+        'title':'Updated info on rocket',
+        'body':'need more rocket fuel, less liquid methane pls'
+    }
+    update_info = requests.put(url, json=data)
+    print(update_info.text)
+    if update_info.status_code == 200:
+        print(f'✅ Everything went smoothly: {update_info.status_code}')
+    else:
+        print(f'❌ Something went wrong: {update_info.status_code}')
+
+# update_rocket_info()
 
     
 
