@@ -16,3 +16,4 @@ def random_user_information():
     print(f'📩Email: {email}')
     print(f'📱Phone: {phone}')
 
+
