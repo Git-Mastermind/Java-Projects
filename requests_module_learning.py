@@ -346,7 +346,38 @@ def cat_facts():
         print(f'❌ Something went wrong: {response.status_code}')
 
 
-cat_facts()
+# cat_facts()
 
-    
+def city_weather_info():
+    input_city = input('Enter a city: ')
+    input_country = input('Enter the country where the city is in: ')
+    lon_lat_url = f'https://nominatim.openstreetmap.org/search?city={input_city}&country={input_country}&format=json'
+    headers = {
+        "User-Agent": "PythonRequestsApp/1.0 (eshan-jha@outlook.com)"
+    }
+    lon_lat_response = requests.get(lon_lat_url)
+    lon_lat_data = lon_lat_response.json()
+    longitude = lon_lat_data[0]['lon']
+    latitude = lon_lat_data[0]['lat']
+
+    weather_url = f'https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current_weather=true'
+    weather_response = requests.get(weather_url)
+    weather_data = weather_response.json()
+    elevation = weather_data['elevation']
+    temp = weather_data['current_weather']['temperature']
+    windspeed = weather_data['current_weather']['windspeed']
+
+    print(f'📌 Latitude: {latitude}')
+    print(f'🗺️ Longitude: {longitude}')
+    print(f'🛗 Elevation: {elevation}')
+    print(f'🌡️ Temperature: {temp}')
+    print(f'💨 Windspeed: {windspeed}')
+
+    if lon_lat_response.status_code and weather_response.status_code == 200:
+        print(f'✅ Everything went smoothly: {weather_response.status_code}')
+    else:
+        print(f'❌ Something went wrong: {weather_response.status_code}')
+
+
+city_weather_info()
 
