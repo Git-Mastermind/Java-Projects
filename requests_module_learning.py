@@ -335,5 +335,18 @@ def update_rocket_info():
 
 # update_rocket_info()
 
+def cat_facts():
+    url = 'https://catfact.ninja/fact'
+    response  = requests.get(url)
+    data = response.json()
+    print(data['fact'])
+    if response.status_code == 200:
+        print(f'✅ Eveything went smoothly: {response.status_code}')
+    else:
+        print(f'❌ Something went wrong: {response.status_code}')
+
+
+cat_facts()
+
     
 
