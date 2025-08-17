@@ -15,12 +15,23 @@ cursor = connection.cursor()
 # First query
 cursor.execute("SELECT city, AVG(rent_amount) AS avg_rent FROM apartments GROUP BY city ORDER BY avg_rent DESC LIMIT 3;")
 top_3_cities = cursor.fetchall()  # fetch before running next query
-# top_cities = []
+city_names = ''
+loop_counter = -1
+for city in top_3_cities:
+    loop_counter += 1
+    if loop_counter == 0:
+        city_names = city[0]
+    elif 1 <= loop_counter < len(top_3_cities) - 1:
+        city_names = city_names + ', ' + city[0]
+    else:
+        city_names = city_names + ' and ' + city[0]
 
-# for city_rent in top_3_cities:
-#     top_cities.append(city_rent[0])
+print(f'The top 3 cities are {city_names}')
 
-print(f'The top 3 most expensive cities are {top_3_cities[0][0]}, {top_3_cities[1][0]}, and {top_3_cities[2][0]}')
+
+
+
+
 
 # Line break
 print('')
@@ -29,12 +40,19 @@ print('')
 cursor.execute("SELECT city, AVG(rent_amount) AS avg_rent FROM apartments GROUP BY city ORDER BY avg_rent LIMIT 3;")
 bottom_3_cities = cursor.fetchall()
 top_3_cities = cursor.fetchall()  # fetch before running next query
-bottom_cities = []
+bottom_cities = ''
+loop_counter = -1
+for city in bottom_3_cities:
+    loop_counter += 1
+    if loop_counter == 0:
+        bottom_cities  = city[0]
+    elif 1 <= loop_counter < len(bottom_3_cities) - 1:
+        bottom_cities = bottom_cities + ', ' + city[0]
+    else:
+        bottom_cities = bottom_cities + ' and ' + city[0]
 
-for city_rent in bottom_3_cities:
-    bottom_cities.append(city_rent[0])
+print(f'The bottom 3 cities are {bottom_cities}')
 
-print(f'The bottom 3 cities are {bottom_cities[0]}, {bottom_cities[1]}, and {bottom_cities[2]}')
 # Close connection
 cursor.close()
 connection.close()
