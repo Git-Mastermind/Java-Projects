@@ -10,7 +10,10 @@ connection = mysql.connector.connect(
     password="ILovebooks!@#123",
     database="enu_db"
 )
-print('Connected to MySQL!')
+print('Initializing Database...')
+time.sleep(0.8)
+print('Connected to mySQL!')
+time.sleep(0.3)
 
 cursor = connection.cursor()
 def fetchall(query):
@@ -145,7 +148,7 @@ def apartment_renter_managment():
             print('Fetching Renter ID...')
             time.sleep(0.2)
 
-            print(f'✅ Successfully Signed Up! Your renter id is {new_renter_id}!')
+            print(f'✅ Successfully Signed Up! Your renter id is {new_renter_id[0][0]}')
 
         else:
             move_in_date = input('When will ou move in: ')
@@ -155,44 +158,11 @@ def apartment_renter_managment():
             new_renter_id = run_action(f'SELECT renter_id FROM apartments WHERE apartment_number = {apartment_number}')
             new_renter_id = [renter_id_new[0] for renter_id_new in new_renter_id]
 
-            print(f'✅ Successfully Signed Up! Your renter id is {new_renter_id}!')
+            print(f'✅ Successfully Signed Up! Your renter id is {new_renter_id[0][0]}!')
     
-    # def check_in():
-    #     time.sleep(0.3)
-    #     first_name = input('Enter your first name: ')
-
-    #     last_name = input('Enter your last name: ')
-
-    #     phone_number = input('Enter your phone number: ')
-
-    #     email = input('Enter your email: ')
-
-    #     move_in_date = input('When will you move in?:  ')
-
-    #     apartment_number = input('Which apartment will you move in to (type help for available apartments): ')
-
-    #     if apartment_number == 'help':
-    #         avab_apartments = fetch("SELECT apartment_number FROM apartments WHERE is_available = 1")
-    #         avab_apartments = [apt[0] for apt in avab_apartments]
-
-    #         print("🏠 Available Apartments: ", ', '.join(avab_apartments))
-    #         time.sleep(1)
-
-    #         apartment_number = input('Which apartment will you move in to?: ')
-
-    #         run_action(f"INSERT INTO renters (first_name, last_name, phone_number, email, move_in_date, apartment_number) VALUES ('{first_name}', '{last_name}', '{phone_number}', '{email}', '{move_in_date}', '{apartment_number}')")
-    #         print(f"✅ Successfully moved {first_name} {last_name} into Apartment {apartment_number}!")
-
-    #         run_action(f"UPDATE apartments SET is_available = 0 WHERE apartment_number = {apartment_number}")
-    #         time.sleep(2)
-
-    #     else:
-    #         run_action(f"INSERT INTO renters (first_name, last_name, phone_number, email, move_in_date, apartment_number) VALUES ('{first_name}', '{last_name}', '{phone_number}', '{email}', '{move_in_date}', '{apartment_number}')")
-    #         print(f"✅ Successfully moved {first_name} {last_name} into Apartment {apartment_number}!")
-    #         run_action(f"UPDATE apartments SET is_available = 0 WHERE apartment_number = {apartment_number}")
-    #         time.sleep(2)
     
     def update_renter_info():
+        nonlocal renter_id
         time.sleep(0.3)
         renter_to_update = int(input('Please enter your renter id: '))
         info = print('''Update: 
@@ -292,13 +262,7 @@ def apartment_renter_managment():
         fetchall(f"SELECT r.first_name, r.last_name, a.apartment_number FROM apartments a JOIN renters r USING (apartment_number) WHERE city = '{input_city}'")
         print('✅ Success')
         time.sleep(2)
-    # def insert_renter():
-    #     insert_renter = input('Enter the renters first name, last name, phonenumber, email, move in date and apartment number (seperated by comma): ')
-    #     renter_info = [x.strip() for x in insert_renter.split(',')]
-    #     renter_query = f"INSERT INTO renters (first_name, last_name, phone_number, email, move_in_date, apartment_number) VALUES ('{renter_info[0]}', '{renter_info[1]}', '{renter_info[2]}', '{renter_info[3]}', '{renter_info[4]}', '{renter_info[5]}')"
-    #     run_action(renter_query)
-    #     print(f'✅ Inserted {renter_info[0]} {renter_info[1]} into {renter_info[5]}')
-    #     time.sleep(2)
+
     
     def insert_apartment():
         time.sleep(0.3)
@@ -327,10 +291,23 @@ def apartment_renter_managment():
         time.sleep(0.3)
 
         print('Inserting Data into Table...')
-        time.sleep(0.2)
+        time.sleep(0.6)
 
         print('✅ Created New Apartment')
         time.sleep(2)
+    
+    def log_out():
+        nonlocal logged_in
+        print('Logging out...')
+        time.sleep(0.8)
+
+        print('Rebooting Visuals...')
+        time.sleep(0.4)
+
+        print('Logged out!')
+        time.sleep(0.3)
+
+        logged_in = False
     
     while True:
         if not logged_in:
@@ -340,32 +317,6 @@ def apartment_renter_managment():
             action = int(input('Choose an option: '))
             if action == 1:
                 log_in()
-                # print('''----- Apartment and Renter Managment -----
-                #     1 ----- Check In
-                #     2 ----- Update Renter Info
-                #     3 ----- List Available Apartments
-                #     4 ----- List Renters
-                #     5 ----- Average Rent Per City
-                #     6 ----- Insert a New Apartment
-                #     7 ----- Exit''')
-                # action_input = int(input('Choose an option: '))
-                # if action_input == 1:
-                #     check_in()
-                # elif action_input == 2:
-                #     update_renter_info()
-                # elif action_input == 3:
-                #     list_apartments()
-                # elif action_input == 4:
-                #     list_renters()
-                # elif action_input == 5:
-                #     avg_rent_per_city()
-                # elif action_input == 6:
-                #     insert_apartment()
-                # elif action_input == 7:
-                #     print('👋 Goodbye!')
-                #     break
-                # else:
-                #     print('❌ Invalid Option!')
                     
             elif action == 2:
                 sign_up()
@@ -376,7 +327,8 @@ def apartment_renter_managment():
                     2 ----- List Available Apartments
                     3 ----- List Renters
                     4 ----- Create New Apartment
-                    5 ----- Exit''')
+                    5 ----- Log Out
+                    6 ----- Exit''')
                 action_input = int(input('Choose an option: '))
                 if action_input == 1:
                     update_renter_info()
@@ -387,42 +339,14 @@ def apartment_renter_managment():
                 elif action_input == 4:
                     insert_apartment()
                 elif action_input == 5:
+                    log_out()
+                elif action_input == 6:
                     print('👋 Goodbye!')
                     quit()
                 else:
                     print('❌ Invalid Option!')
-                    # print('''----- Apartment and Renter Managment -----
-                    #         1 ----- Log In
-                    #         2 ----- Check In
-                    #         3 ----- List Available Apartments
-                    #         4 ----- List Renters
-                    #         5 ----- Average Rent Per City
-                    #         6 ----- Insert a New Apartment
-                    #         7 ----- Exit
-                    #         8 ----- ''')
-                    # action_input = int(input('Choose an option: '))
-                    # if action_input == 1:
-                    #     log_in()
-                    # elif action_input == 2:
-                    #     check_in()
-                    # elif action_input == 3:
-                    #     list_apartments()
-                        
-                    # elif action_input == 4:
-                    #     list_renters()
-                    # elif action_input == 5:
-                    #     avg_rent_per_city()
-                    # elif action_input == 6:
-                    #     insert_apartment()
-                    # elif action_input == 7:
-                    #     print('👋 Goodbye!')
-                    #     break
-                    # else:
-                    #     print('❌ Invalid Option!')
-            
-            
-        
 
+            
 apartment_renter_managment()
 
 
