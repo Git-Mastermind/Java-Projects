@@ -1,4 +1,4 @@
 ﻿# Apartment and Renter Managment System
 
-Log in using your renter id. If you don't have on, buy an existing (available) apartment and your renter id will be given to you. Once you have a renter id, loggin in will give you access to updating your info, creating new apartments for your friends and family, or listing all of the renters who currently own an apartment. Have fun!
+Python Projects is my repo consisting of all of my python projects that I have made over my programming journey! From number guessing games, to even web services and mySQL projects, this repo is filled to the brim with coding excellence!
 
