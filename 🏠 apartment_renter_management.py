@@ -1,7 +1,12 @@
 import mysql.connector
-from decimal import Deciaml
+from decimal import Decimal
 import time
-from apartment_renter_management_functions import log_in, log_out, list_renters, insert_apartment, avg_rent_per_city, list_apartments, update_renter_info
+from apartment_renter_management_functions import log_in, sign_up, log_out, list_renters, insert_apartment, avg_rent_per_city, list_apartments, update_renter_info
+global logged_in
+logged_in = False
+global renter_id
+renter_id = 0
+
 def apartment_renter_managment():
     while True:
         if not logged_in:
