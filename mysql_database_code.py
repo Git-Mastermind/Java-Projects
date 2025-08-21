@@ -1,6 +1,7 @@
 import mysql.connector
 import time
 from decimal import Decimal
+import tkinter as tk
 
 # Connect to MySQL
 connection = mysql.connector.connect(
@@ -44,7 +45,16 @@ def run_action(query):
     cursor.execute(query)
     connection.commit()
 
+def switch_database(database):
+    connection = mysql.connector.connect(
+    host="localhost",
+    port = 3306,
+    user="eshanjha",
+    password="ILovebooks!@#123",
+    database=database)
+    return f"you are currently using {database}"
 
+switch_database('sql_store')
 def top_bottom_3_cities():
     # First query
     cursor.execute("SELECT city, AVG(rent_amount) AS avg_rent FROM apartments GROUP BY city ORDER BY avg_rent DESC LIMIT 3;")
@@ -180,24 +190,28 @@ def apartment_renter_managment():
             first_name = input('New First Name = ')
             run_action(f"UPDATE renters SET first_name = '{first_name}' WHERE renter_id = {renter_to_update}")
             print("✅ Successfully Updated First Name!")
+
         elif info_to_update == 2:
             results = fetch(f"SELECT last_name FROM renters WHERE renter_id = {renter_to_update}")
             print(f'Original Last Name = {results}')
             last_name = input('New Last Name = ')
             run_action(f"UPDATE renters SET last_name = '{last_name}' WHERE renter_id = {renter_to_update}")
             print("✅ Successfully Updated Last Name!")
+
         elif info_to_update == 3:
             results = fetch(f'SELECT phone_number FROM renters WHERE renter_id = {renter_to_update}')
             print(f'Original Phone Number = {results}')
             phone_number = input('New Phone Number (xxx-xxx-xxxx) = ')
             run_action(f"UPDATE renters SET phone_number = '{phone_number}' WHERE renter_id = {renter_to_update}")
             print("✅ Successfully Updated Phone Number!")
+
         elif info_to_update == 4:
             results = fetch(f'SELECT email FROM renters WHERE renter_id = {renter_to_update}')
             print(f'Original Email = {results}')
             email = input('New Email = ')
             run_action(f"UPDATE renters SET email = '{email}' WHERE renter_id = {renter_to_update}")
             print("✅ Successfully Updated Email!")
+
         elif info_to_update == 5:
             results = fetch(f'SELECT apartment_number FROM renters WHERE renter_id = {renter_to_update}')
             print(f'Original Apartment Number = {results}')
@@ -208,6 +222,7 @@ def apartment_renter_managment():
                 run_action(f"UPDATE apartments SET is_available = 0 WHERE apartment_number = '{apartment_number}'")
                 run_action(f"UPDATE apartments SET is_available = 1 WHERE apartment_number = '{results}'")
                 print("✅ Successfully Updated Apartment Number!")
+
             else:
                 print("❌ That apartment is occupied!")
                 
@@ -269,12 +284,19 @@ def apartment_renter_managment():
         print('Enter the credentials')
         time.sleep(0.5)
         apartment_number = input('Apartment Number: ')
+
         address = input('Address: ')
+
         city = input('City: ')
+
         state = input('State: ')
+
         zip_code = int(input('Zip Code: '))
+
         rent_amount = int(input('Rent Amount: '))
+
         bedrooms = int(input('Bedrooms: '))
+
         bathrooms = int(input('Bathrooms: '))
 
 
@@ -295,6 +317,26 @@ def apartment_renter_managment():
 
         print('✅ Created New Apartment')
         time.sleep(2)
+
+    def get_recommendations():
+        max_budget = int(input('Max Budget: '))
+
+        num_of_bedrooms = int(input('Number of Bedrooms: '))
+
+        num_of_bathrooms = int(input('Num of Bathrooms: '))
+
+        results = fetch(f"SELECT apartment_number FROM apartments WHERE rent_amount <= {max_budget} AND bedrooms <= {num_of_bedrooms} AND bathrooms <= {num_of_bathrooms} AND is_available = 1")
+        results = [key[0] for key in results]
+        print('Fetching Data...')
+        time.sleep(0.6)
+
+        print('Inserting Recommendations...')
+        time.sleep(0.3)
+
+        print(f"🏠 Recommended Apartments: {results}")
+        time.sleep(2)
+
+    
     
     def log_out():
         nonlocal logged_in
@@ -314,11 +356,11 @@ def apartment_renter_managment():
             print('''----- Apartment and Renter Managment -----
                 1: Log In
                 2: Buy an Apartment''')
-            action = int(input('Choose an option: '))
-            if action == 1:
+            action_input = int(input('Choose an option: '))
+            if action_input == 1:
                 log_in()
                     
-            elif action == 2:
+            elif action_input == 2:
                 sign_up()
             
             while logged_in:
@@ -327,27 +369,37 @@ def apartment_renter_managment():
                     2 ----- List Available Apartments
                     3 ----- List Renters
                     4 ----- Create New Apartment
-                    5 ----- Log Out
-                    6 ----- Exit''')
+                    5 ----- Get Recommendations
+                    6 ----- Log Out
+                    7 ----- Exit''')
                 action_input = int(input('Choose an option: '))
                 if action_input == 1:
                     update_renter_info()
+
                 elif action_input == 2:
                     list_apartments()
+
                 elif action_input == 3:
                     list_renters()
+
                 elif action_input == 4:
                     insert_apartment()
+
                 elif action_input == 5:
-                    log_out()
+                    get_recommendations()
+
                 elif action_input == 6:
+                    log_out()
+
+                elif action_input == 7:
                     print('👋 Goodbye!')
                     quit()
+
                 else:
                     print('❌ Invalid Option!')
 
             
-apartment_renter_managment()
+# apartment_renter_managment()
 
 
 
