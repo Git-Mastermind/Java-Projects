@@ -12,6 +12,7 @@
 #         city_names = city_names + ' and ' + city
 
 # print(city_names)
+import tkinter as tk
     
 def first_letter_of_words():
     input_sentence = input('Enter a sentence (each word space seperated): ')
@@ -33,7 +34,22 @@ def first_letter_of_each_word():
             result.append(characters[i + 1])
     print(*result)
 
-first_letter_of_each_word()
+# first_letter_of_each_word()
+
+
+def say_hi():
+    print('Hi from Tkinter!')
+
+
+def said_hi():
+    print('Click!')
+root = tk.Tk()
+root.title('My First GUI')
+label = tk.Label(root, text='Hello Tkinter!')
+button = tk.Button(root, text='Click Me!', command=say_hi)
+label.pack()
+button.pack()
+root.mainloop()
 
 
 
