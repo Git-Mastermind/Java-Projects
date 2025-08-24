@@ -168,6 +168,23 @@ def apartment_renter_managment():
             new_renter_id = [renter_id_new[0] for renter_id_new in new_renter_id]
 
             print(f'✅ Successfully Signed Up! Your renter id is {new_renter_id[0][0]}!')
+
+    def apartment_stats():
+        apartment_number = input('Apartment Number (type help for available apartments): ')
+        if apartment_number == 'help':
+            avab_apartments = fetch(f"SELECT apartment_number FROM apartments WHERE is_available = 1")
+            avab_apartments = [apt[0] for apt in avab_apartments]
+            print(f'🏠 Available Apartments = {avab_apartments}')
+            apartment_number = input('Apartment Number: ')
+            apartment_info = fetch(f"SELECT bedrooms, bathrooms, rent_amount FROM apartments WHERE apartment_number = {apartment_number}")
+            bedrooms = apartment_info[0][0]
+            bathrooms = apartment_info[0][1]
+            rent_amount = apartment_info[0][2]
+            print(f'🛏️ Bedrooms: {bedrooms}')
+            print(f'🧻 Bathrooms: {bathrooms}')
+            print(f'💵 Rent: {rent_amount}')
+
+    
     
     
     def update_renter_info():
@@ -359,13 +376,17 @@ def apartment_renter_managment():
         if not logged_in:
             print('''----- Apartment and Renter Managment -----
                 1: Log In
-                2: Buy an Apartment''')
+                2: Buy an Apartment
+                3: See Apartment Info''')
             action_input = int(input('Choose an option: '))
             if action_input == 1:
                 log_in()
                     
             elif action_input == 2:
                 sign_up()
+
+            elif action_input == 3:
+                apartment_stats()
             
             while logged_in:
                 print('''----- Apartment and Renter Managment -----
