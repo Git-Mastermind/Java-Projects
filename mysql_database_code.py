@@ -1,7 +1,6 @@
 import mysql.connector
 import time
 from decimal import Decimal
-import tkinter as tk
 
 # Connect to MySQL
 connection = mysql.connector.connect(
@@ -22,6 +21,7 @@ def fetchall(query):
     results = cursor.fetchall()
     for row in results:
         print(row)
+
 
 
 # def fetch(query):
@@ -52,7 +52,6 @@ def switch_database(database):
     user="eshanjha",
     password="ILovebooks!@#123",
     database=database)
-    return f"you are currently using {database}"
 
 switch_database('sql_store')
 def top_bottom_3_cities():
@@ -335,6 +334,11 @@ def apartment_renter_managment():
 
         print(f"🏠 Recommended Apartments: {results}")
         time.sleep(2)
+
+    def create_order():
+        order_item = input('What would you like to order: ')
+
+
 
     
     
