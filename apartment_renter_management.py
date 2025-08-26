@@ -1,0 +1,442 @@
+import mysql.connector
+import time
+from decimal import Decimal
+import tkinter as tk
+
+# Connect to MySQL
+connection = mysql.connector.connect(
+    host="localhost",
+    port = 3306,
+    user="eshanjha",
+    password="ILovebooks!@#123",
+    database="enu_db"
+)
+print('Initializing Database...')
+time.sleep(0.8)
+print('Connected to mySQL!')
+time.sleep(0.3)
+
+cursor = connection.cursor()
+def fetchall(query):
+    cursor.execute(query)
+    results = cursor.fetchall()
+    for row in results:
+        print(row)
+
+
+# def fetch(query):
+#     cursor.execute(query)
+#     cursor.fetchall()
+def fetch(query):
+    cursor.execute(query)
+    results = cursor.fetchall()  # always returns a list of tuples
+    clean_results = []
+
+    # convert any Decimals to float
+    for row in results:
+        clean_row = tuple(float(x) if isinstance(x, Decimal) else x for x in row)
+        clean_results.append(clean_row)
+
+    return clean_results
+
+
+
+def run_action(query):
+    cursor.execute(query)
+    connection.commit()
+
+def switch_database(database):
+    connection = mysql.connector.connect(
+    host="localhost",
+    port = 3306,
+    user="eshanjha",
+    password="ILovebooks!@#123",
+    database=database)
+    return f"you are currently using {database}"
+
+switch_database('sql_store')
+
+
+def apartment_renter_managment():
+    logged_in = False
+    renter_id = 0
+
+    def log_in():
+        nonlocal renter_id, logged_in
+        time.sleep(0.3)
+
+        renter_id = int(input('Enter your renter id: '))
+        results = fetch(f'SELECT first_name, last_name FROM renters WHERE renter_id = {renter_id}')
+
+        if results:
+            print('Fetching Data from Database...')
+            time.sleep(1.5)
+            print(f'✅ Welcome {results[0][0]} {results[0][1]}')
+            logged_in = True
+            time.sleep(2)
+
+        else:
+            print('❌ Renter ID not found')
+    
+    def sign_up():
+        print('Please enter your credentials')
+        time.sleep(0.3)
+
+        first_name = input('First Name: ')
+
+        last_name = input('Last Name: ')
+
+        phone_number = input('Phone Number: ')
+
+        email = input('Email: ')
+
+        apartment_number = input('Which apartment do you want to buy (type help for available apartments): ')
+
+        if apartment_number == 'help' or apartment_number == 'HELP':
+            avab_apartments = fetch(f"SELECT apartment_number FROM apartments WHERE is_available = 1")
+            avab_apartments = [apt[0] for apt in avab_apartments]
+
+            print(f"🏠 Available Apartments: {avab_apartments}")
+
+            apartment_number = input('Which apartment do you want to buy: ')
+
+            move_in_date = input('When will you move in: ')
+
+            run_action(f"INSERT INTO renters (first_name, last_name, phone_number, email, move_in_date, apartment_number) VALUES ('{first_name}', '{last_name}', '{phone_number}', '{email}', '{move_in_date}', '{apartment_number}')")
+
+            new_renter_id = fetch(f"SELECT r.renter_id FROM apartments a LEFT JOIN renters r USING (apartment_number) WHERE apartment_number = '{apartment_number}'")
+
+            run_action(f"UPDATE apartments SET is_available = 0 WHERE apartment_number = '{apartment_number}'")
+            print('Fetching Data...')
+            time.sleep(0.3)
+
+            print('Inserting Data Into Table...')
+            time.sleep(0.2)
+
+            print('Fetching Renter ID...')
+            time.sleep(0.2)
+
+            print(f'✅ Successfully Signed Up! Your renter id is {new_renter_id[0][0]}')
+
+        else:
+            move_in_date = input('When will ou move in: ')
+
+            run_action(f"INSERT INTO renters (first_name, last_name, phone_number, email, move_in_date, apartment_number) VALUES ('{first_name}', '{last_name}', '{phone_number}', '{email}', '{move_in_date}', '{apartment_number}')")
+
+            new_renter_id = run_action(f'SELECT renter_id FROM apartments WHERE apartment_number = {apartment_number}')
+            new_renter_id = [renter_id_new[0] for renter_id_new in new_renter_id]
+
+            print(f'✅ Successfully Signed Up! Your renter id is {new_renter_id[0][0]}!')
+
+    def apartment_stats():
+        apartment_number = input('Apartment Number (type help for available apartments): ')
+        if apartment_number == 'help':
+            avab_apartments = fetch(f"SELECT apartment_number FROM apartments WHERE is_available = 1")
+            avab_apartments = [apt[0] for apt in avab_apartments]
+            print(f'🏠 Available Apartments = {avab_apartments}')
+            apartment_number = input('Apartment Number: ')
+            apartment_info = fetch(f"SELECT bedrooms, bathrooms, rent_amount FROM apartments WHERE apartment_number = '{apartment_number}'")
+            bedrooms = apartment_info[0][0]
+            bathrooms = apartment_info[0][1]
+            rent_amount = apartment_info[0][2]
+            print(f'🛏️ Bedrooms: {bedrooms}')
+            print(f'🧻 Bathrooms: {bathrooms}')
+            print(f'💵 Rent: {rent_amount}')
+
+        else:
+            apartment_info = fetch(f"SELECT bedrooms, bathrooms, rent_amount FROM apartments WHERE apartment_number = '{apartment_number}'")
+            bedrooms = apartment_info[0][0]
+            bathrooms = apartment_info[0][1]
+            rent_amount = apartment_info[0][2]
+            print(f'🛏️ Bedrooms: {bedrooms}')
+            print(f'🧻 Bathrooms: {bathrooms}')
+            print(f'💵 Rent: {rent_amount}')
+            
+    def forgot_renter_id():
+        first_name = input('First Name: ')
+        last_name = input('Last Name: ')
+        phone_number = input('Phone Number: ')
+
+        renter_id = fetch(f"SELECT renter_id FROM renters WHERE first_name = '{first_name}' AND last_name = '{last_name}' AND phone_number = '{phone_number}'")
+        print('Fetching Data...')
+        time.sleep(1)
+
+        print(f'✅ Your renter id is {renter_id[0][0]}')
+        time.sleep(2)
+
+
+
+
+
+    
+    
+    
+    def update_renter_info():
+        nonlocal renter_id
+        time.sleep(0.3)
+        # renter_to_update = int(input('Please enter your renter id: '))
+        print('Fethcing...')
+        time.sleep(0.6)
+        info = print('''Update: 
+                                1: First Name
+                                2: Last Name
+                                3: Phone Number
+                                4: Email
+                                5: Apartment Number''')
+        info_to_update = int(input('Choose an option: '))
+
+            
+        if info_to_update == 1:
+            results = fetch(f'SELECT first_name FROM renters WHERE renter_id = {renter_id}')
+            print(f'Original First Name = {results[0][0]}')
+            first_name = input('New First Name = ')
+            run_action(f"UPDATE renters SET first_name = '{first_name}' WHERE renter_id = {renter_id}")
+            print('Updating...')
+            time.sleep(0.6)
+            print("✅ Successfully Updated First Name!")
+            time.sleep(2)
+
+        elif info_to_update == 2:
+            results = fetch(f"SELECT last_name FROM renters WHERE renter_id = {renter_id}")
+            print(f'Original Last Name = {results[0][0]}')
+            last_name = input('New Last Name = ')
+            run_action(f"UPDATE renters SET last_name = '{last_name}' WHERE renter_id = {renter_id}")
+            print('Updating...')
+            time.sleep(0.6)
+            print("✅ Successfully Updated Last Name!")
+            time.sleep(2)
+
+        elif info_to_update == 3:
+            results = fetch(f'SELECT phone_number FROM renters WHERE renter_id = {renter_id}')
+            print(f'Original Phone Number = {results[0][0]}')
+            phone_number = input('New Phone Number (xxx-xxx-xxxx) = ')
+            run_action(f"UPDATE renters SET phone_number = '{phone_number}' WHERE renter_id = {renter_id}")
+            print('Updating...')
+            time.sleep(0.6)
+            print("✅ Successfully Updated Phone Number!")
+            time.sleep(2)
+
+        elif info_to_update == 4:
+            results = fetch(f'SELECT email FROM renters WHERE renter_id = {renter_id}')
+            print(f'Original Email = {results[0][0]}')
+            email = input('New Email = ')
+            run_action(f"UPDATE renters SET email = '{email}' WHERE renter_id = {renter_id}")
+            print('Updating...')
+            time.sleep(0.6)
+            print("✅ Successfully Updated Email!")
+            time.sleep(2)
+
+        elif info_to_update == 5:
+            results = fetch(f'SELECT apartment_number FROM renters WHERE renter_id = {renter_id}')
+            print(f'Original Apartment Number = {results[0][0]}')
+            apartment_number = input('New Apartment Number = ')
+            is_available = fetch(f"SELECT is_available FROM apartments WHERE apartment_number = '{apartment_number}'")
+            if is_available[0][0] == 1:
+                run_action(f"UPDATE renters SET apartment_number = '{apartment_number}' WHERE renter_id = {renter_id}")
+                run_action(f"UPDATE apartments SET is_available = 0 WHERE apartment_number = '{apartment_number}'")
+                run_action(f"UPDATE apartments SET is_available = 1 WHERE apartment_number = '{results[0][0]}'")
+                print('Updating...')
+                time.sleep(0.6)
+                print("✅ Successfully Updated Apartment Number!")
+                time.sleep(2)
+
+            else:
+                print("❌ That apartment is occupied!")
+                
+                
+
+        
+
+    def list_apartments():
+        time.sleep(0.3)
+        avab_apartments = fetch("SELECT apartment_number, rent_amount, bedrooms, bathrooms FROM apartments WHERE is_available = 1")
+        avab_apartments = [apt[0] for apt in avab_apartments]
+
+        print('Fetching Data from Database...')
+        time.sleep(0.3)
+
+        print('Fetching available apartments')
+        time.sleep(0.2)
+
+        print(f"🏠 Available Apartments: {avab_apartments}")
+        print('✅ Successfully Fetched Apartments!')
+        time.sleep(2)
+    
+    def list_renters():
+        time.sleep(0.3)
+        results = fetch("SELECT first_name, last_name, apartment_number FROM renters")
+        results = [renters[0] for renters in results]
+        print('Fetching Data from Database...')
+        time.sleep(0.3)
+
+        print('Fetching All Renters...')
+        time.sleep(0.2)
+
+        print(f"🤑 Renters: {results}")
+        print('✅ Successfully Fetched Renters!')
+        time.sleep(2)
+    
+    def avg_rent_per_city():
+        time.sleep(0.3)
+        print('Fetching Data from Database...')
+        time.sleep(0.3)
+
+        print('Fetching All Renters...')
+        time.sleep(0.2)
+
+        fetchall("SELECT city, AVG(rent_amount) FROM apartments GROUP BY city")
+        print('✅ Success')
+        time.sleep(2)
+    
+    def find_renter_by_city():
+        time.sleep(0.3)
+        input_city = input('Enter a city: ')
+        fetchall(f"SELECT r.first_name, r.last_name, a.apartment_number FROM apartments a JOIN renters r USING (apartment_number) WHERE city = '{input_city}'")
+        print('✅ Success')
+        time.sleep(2)
+
+    
+    def insert_apartment():
+        time.sleep(0.3)
+        print('Enter the credentials')
+        time.sleep(0.5)
+        apartment_number = input('Apartment Number: ')
+
+        address = input('Address: ')
+
+        city = input('City: ')
+
+        state = input('State: ')
+
+        zip_code = int(input('Zip Code: '))
+
+        rent_amount = int(input('Rent Amount: '))
+
+        bedrooms = int(input('Bedrooms: '))
+
+        bathrooms = int(input('Bathrooms: '))
+
+        avab_check = fetch(f"SELECT apartment_number FROM apartments WHERE apartment_number = '{apartment_number}'")
+        if avab_check == apartment_number:
+            print(f'❌ Apartment {apartment_number} has already been created!')
+        else:
+            apartment_query = f"INSERT INTO apartments (apartment_number, address, city, state, zip_code, rent_amount, bedrooms, bathrooms) VALUES ('{apartment_number}', '{address}', '{city}', '{state}', {zip_code}, {rent_amount}, {bedrooms}, {bathrooms})"
+            run_action(apartment_query)
+            run_action(f"UPDATE apartments SET is_available = 1 WHERE apartment_number = '{apartment_number}'")
+            print('Brewing Concrete...')
+            time.sleep(0.6)
+
+            print('Building the Walls...')
+            time.sleep(0.5)
+
+            print('Adding the Roof...')
+            time.sleep(0.3)
+
+            print('Inserting Data into Table...')
+            time.sleep(0.6)
+
+            print('✅ Created New Apartment')
+            time.sleep(2)
+
+    def get_recommendations():
+        max_budget = int(input('Max Budget: '))
+
+        num_of_bedrooms = int(input('Number of Bedrooms: '))
+
+        num_of_bathrooms = int(input('Num of Bathrooms: '))
+
+        results = fetch(f"SELECT apartment_number FROM apartments WHERE rent_amount <= {max_budget} AND bedrooms <= {num_of_bedrooms} AND bathrooms <= {num_of_bathrooms} AND is_available = 1")
+        results = [key[0] for key in results]
+        print('Fetching Data...')
+        time.sleep(0.6)
+
+        print('Inserting Recommendations...')
+        time.sleep(0.3)
+
+        print(f"🏠 Recommended Apartments: {results}")
+        time.sleep(2)
+
+    
+    
+    def log_out():
+        nonlocal logged_in
+        print('Logging out...')
+        time.sleep(0.8)
+
+        print('Rebooting Visuals...')
+        time.sleep(0.4)
+
+        print('Logged out!')
+        time.sleep(0.3)
+
+        logged_in = False
+    
+    while True:
+        if not logged_in:
+            print('''----- Apartment and Renter Managment -----
+                1: Log In
+                2: Buy an Apartment
+                3: See Apartment Info
+                4: Forgot Renter Id?
+                5: Exit''')
+            action_input = int(input('Choose an option: '))
+            if action_input == 1:
+                log_in()
+                    
+            elif action_input == 2:
+                sign_up()
+
+            elif action_input == 3:
+                apartment_stats()
+            
+            elif action_input == 4:
+                forgot_renter_id()
+            
+            elif action_input == 5:
+                print('👋 Goodbye!')
+                quit()
+
+
+            
+            while logged_in:
+                print('''----- Apartment and Renter Managment -----
+                    1 ----- Update Renter Info
+                    2 ----- List Available Apartments
+                    3 ----- List Renters
+                    4 ----- Create New Apartment
+                    5 ----- Get Recommendations
+                    6 ----- Log Out
+                    7 ----- Exit''')
+                action_input = int(input('Choose an option: '))
+                if action_input == 1:
+                    update_renter_info()
+
+                elif action_input == 2:
+                    list_apartments()
+
+                elif action_input == 3:
+                    list_renters()
+
+                elif action_input == 4:
+                    insert_apartment()
+
+                elif action_input == 5:
+                    get_recommendations()
+
+                elif action_input == 6:
+                    log_out()
+
+                elif action_input == 7:
+                    print('👋 Goodbye!')
+                    quit()
+
+                else:
+                    print('❌ Invalid Option!')
+
+            
+apartment_renter_managment()
+
+
+
+
+    
