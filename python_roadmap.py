@@ -29,6 +29,7 @@ class Stacks:
 
     def push(self, item):
         fruits.append(item)
+        print('✅ Successfully pushed item!')
 
 
     def is_empty(self):
@@ -45,6 +46,7 @@ print(stack.peek())
 print(stack.top())
 print(stack.is_empty())
 print(stack.push('Acai Berries'))
+print(fruits)
 
 
               
