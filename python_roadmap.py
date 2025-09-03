@@ -8,7 +8,9 @@ class Stacks:
         if len(fruits) == 0:
             print('List is empty 😅')
         else:
-            return fruits[-1]
+            popped_value = fruits[-1]
+            del fruits[-1]
+            return popped_value
         
         
     def peek(self):
@@ -37,7 +39,13 @@ class Stacks:
         
 stack = Stacks()
 
-stack.pop()
+
+print(stack.pop())
+print(stack.peek())
+print(stack.top())
+print(stack.is_empty())
+print(stack.push('Acai Berries'))
+
 
               
 
