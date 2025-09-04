@@ -41,12 +41,20 @@ class Stacks:
 stack = Stacks()
 
 
-print(stack.pop())
-print(stack.peek())
-print(stack.top())
-print(stack.is_empty())
-print(stack.push('Acai Berries'))
-print(fruits)
+# print(stack.pop())
+# print(stack.peek())
+# print(stack.top())
+# print(stack.is_empty())
+# print(stack.push('Acai Berries'))
+# print(fruits)
+
+# nums = (x for x in range(100))
+# print(next(nums))
+
+nums = [1,2,3,4,5]
+print(quit(nums))
+
+
 
 
               
