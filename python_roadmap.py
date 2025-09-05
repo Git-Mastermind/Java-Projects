@@ -100,22 +100,29 @@ class Gen_Exp:
 gen_exp = Gen_Exp()
 
 class RaisingExceptions:
-    def check_positive(num):
+    def check_positive(self, num):
         if num < 0:
             raise ValueError('❌ Number cannot be negative!')
         else:
             print('✅ Number is positive')
     
-    def safe_divide(num1, num2):
+    def safe_divide(self, num1, num2):
         if num2 == 0:
             raise ZeroDivisionError('Cannot divide by zero!')
         else:
             return num1 / num2
     
+    def get_element(self, list, index):
+        if index > len(fruits):
+            raise IndexError('Invalid Index!')
+        else:
+            return list[index]    
 
 raising_exceptions = RaisingExceptions()
+raising_exceptions.safe_divide(2,0)
 
-raising_exceptions.safe_divide(5, 5)
+
+
 
 
 
