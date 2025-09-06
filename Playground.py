@@ -17,14 +17,27 @@ def lamdba_cubed():
 
 # lamdba_cubed()
 
-def second_index():
+def sorted_numbers():
     nums = [(1,5), (3,2), (4,2)]
     sorted_nums = sorted(nums, key=lambda pair:pair[1])
-    print(sorted_nums())
+    print(sorted_nums)
+
+# sorted_numbers()
 
 def palindrome_checker():
     word = input('Enter a word: ')
     palindrome_check = lambda word : True if word[::-1] == word else False
     print(palindrome_check(word))
 
-palindrome_checker()
+# palindrome_checker()
+
+def even_or_odd():
+    num = int(input('Enter a number: '))
+    even_or_odd = lambda num : 'Even' if num % 2 == 0 else 'Odd'
+    print(even_or_odd(num))
+
+# even_or_odd()
+
+
+fruits = ['strawberries', 'blueberries', 'cherries', 'grapes', 'blackberries', 'raspberries']
+print(sorted(fruits, key=lambda pair : len(pair)))
