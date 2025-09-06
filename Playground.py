@@ -1,3 +1,5 @@
+from functools import reduce
+
 def lambda_calculator():
     add = lambda num1, num2 : num1 + num2
     subtract = lambda num1, num2 : num1 - num2
@@ -38,6 +40,60 @@ def even_or_odd():
 
 # even_or_odd()
 
+multiplier = lambda n : (lambda x : x*n)
 
-fruits = ['strawberries', 'blueberries', 'cherries', 'grapes', 'blackberries', 'raspberries']
-print(sorted(fruits, key=lambda pair : len(pair)))
+def square_numbers():
+    nums = [1,2,3,4]
+    square_nums = list(map(lambda num:num**2, nums))
+    print(square_nums)
+
+# square_numbers()
+
+def evens_list():
+    nums = [10,15,20,25]
+    keep_evens = list(filter(lambda num : num % 2 == 0, nums))
+    print(keep_evens)
+
+# evens_list()
+
+def reduce_list_to_products():
+    nums = [1,2,3,4,5]
+    full_product = reduce(lambda x,y:x*y,nums)
+    print(full_product)
+
+# reduce_list_to_products()
+
+def cube_every_number():
+    nums = [1,2,3,4,5]
+    cube_each_num = list(map(lambda num:num**3, nums))
+    print(cube_each_num)
+
+# cube_every_number()
+
+def filter_greator_than_10():
+    nums = [5,12,19,21,30,3]
+    filtered_nums = list(filter(lambda num : num > 10, nums))
+    print(filtered_nums)
+
+# filter_greator_than_10()
+
+def sum_of_evens():
+    nums = [2,4,6,8,10]
+    sum_of_evens = reduce(lambda x,y:x+y,nums)
+    print(sum_of_evens)
+
+# sum_of_evens()
+
+def multi_practice():
+    fruits = ["apple", "banana", "pear", "kiwi", "strawberry"]
+    lengths = list(map(lambda fruit : len(fruit),  fruits))
+    
+    keep_long_words = list(filter(lambda fruit : len(fruit) > 4, fruits))
+
+    longest_word = reduce(lambda x, y : x if len(x) > len(y) else y, keep_long_words)
+
+    print(lengths)
+    print(keep_long_words)
+    print(longest_word)
+
+multi_practice()
