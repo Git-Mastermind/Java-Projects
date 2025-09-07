@@ -2,6 +2,8 @@ from collections import deque
 
 from functools import reduce
 
+import Playground
+
 
 fruits = ['strawberries', 'blueberries', 'cherries', 'grapes', 'blackberries', 'raspberries']
 
@@ -255,19 +257,26 @@ class BankAccount:
         return f'✅ Deposit Successful! Your balance is now {balance}'
     
     def withdraw(self, amount):
+        if amount > self.balance:
+            print('❌ Insufficient funds!')
+            quit()
         balance = self.balance - amount
         self.balace = balance
         return f'✅ Withdraw Successful! Your balance is now {balance}'
 
 bank_account = BankAccount('Eshan', 309.5)
-while True:
-    choice = input('(D)eposit or (W)ithdraw: ').lower()
-    if choice == 'd':
-        amount = float(input('Amount: '))
-        print(bank_account.deposit(amount))
-    else:
-        amount = float(input('Amount: '))
-        print(bank_account.withdraw(amount))
+# while True:
+#     choice = input('(D)eposit or (W)ithdraw: ').lower()
+#     if choice == 'd':
+#         amount = float(input('Amount: '))
+#         print(bank_account.deposit(amount))
+#     else:
+#         amount = float(input('Amount: '))
+#         print(bank_account.withdraw(amount))
+
+print(Playground.add(5,5))
+
+
     
 
 
