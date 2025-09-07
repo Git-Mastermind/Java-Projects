@@ -38,8 +38,19 @@ def calories_dataframe():
     calories_dataframe = pd.DataFrame(calories, index=['Day 1', 'Day 2', 'Day 3'])
     print(calories_dataframe)
 
-calories_dataframe()
+# calories_dataframe()
 
+def csv_dataframe():
+    dataframe = pd.read_csv('data.csv')
+    print(dataframe)
+
+# csv_dataframe()
+
+def csv_data():
+    csv_data = pd.read_csv('data.csv')
+    print(csv_data.to_string())
+
+csv_data()
 
 
 
