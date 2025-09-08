@@ -162,10 +162,16 @@ def correlation():
 
 def data_graphing():
     data = pd.read_csv('data.csv')
-    data.plot()
+
+    # data.plot(kind='hist', x='Duration', y='Calories')
+    data['Duration'].plot(kind='hist')
+
     mat.show()
 
-data_graphing()
+# data_graphing()
+
+data = pd.read_csv('data.csv')
+print(data.describe())
 
 
 
