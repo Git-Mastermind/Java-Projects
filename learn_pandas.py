@@ -120,7 +120,13 @@ def convert_format_of_date():
     dataframe['Date'] = pd.to_datetime(dataframe['Date'], format='mixed')
     print(dataframe.to_string())
 
-convert_format_of_date()
+# convert_format_of_date()
+
+df = pd.read_csv('data.csv')
+
+df['Date'] = pd.to_datetime(df['Date'], format='mixed')
+
+print(df.to_string())
 
 
 
