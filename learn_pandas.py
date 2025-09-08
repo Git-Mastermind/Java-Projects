@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as mat
 
 def check_version():
     print(pd.__version__)
@@ -122,11 +123,49 @@ def convert_format_of_date():
 
 # convert_format_of_date()
 
-df = pd.read_csv('data.csv')
+def fix_wrong_data():
+    data = pd.read_csv('data.csv')
+    data.loc[7, 'Duration'] = 45
+    print(data.to_string())
 
-df['Date'] = pd.to_datetime(df['Date'], format='mixed')
+# fix_wrong_data()
 
-print(df.to_string())
+def fix_all_wrong_data():
+    data = pd.read_csv('data.csv')
+    for i in data.index:
+        if data.loc[i, 'Duration'] > 120:
+            data.loc[i, 'Duration'] = 120
+    
+    print(data.to_string())
+
+# fix_all_wrong_data()
+
+def find_duplicates():
+    data = pd.read_csv('data.csv')
+    print(data.duplicated())
+
+# find_duplicates()
+
+def delete_duplicates():
+    data = pd.read_csv('data.csv')
+    data.drop_duplicates(inplace=True)
+    print(data.to_string())
+
+# delete_duplicates()
+
+def correlation():
+    data = pd.read_csv('data.csv')
+    return data.corr()
+    
+
+# print(correlation())
+
+def data_graphing():
+    data = pd.read_csv('data.csv')
+    data.plot()
+    mat.show()
+
+data_graphing()
 
 
 
