@@ -171,7 +171,7 @@ def data_graphing():
 # data_graphing()
 
 data = pd.read_csv('data.csv')
-print(data.describe())
+# print(data.describe())
 
 
 

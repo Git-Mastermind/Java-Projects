@@ -279,7 +279,7 @@ def sets():
     set2 = {6,7,8,9,10}
     print(set1 | set2)
 
-sets()
+# sets()
 
 
     
