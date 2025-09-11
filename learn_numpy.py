@@ -68,7 +68,49 @@ def multi_dimension_array():
     arr = np.array([1,2,3,4,5], ndmin=5)
     return arr, arr.ndim
 
-print(multi_dimension_array())
+# print(multi_dimension_array())
+
+def adding_elements_in_array():
+    arr = np.array([1,2,3,4,5])
+    return arr[0] + arr[1]
+
+# print(adding_elements_in_array())
+
+def access_two_d_elements():
+    arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+    return arr[0,1]
+
+# print(access_two_d_elements())
+
+def access_3_d_elements():
+    arr = np.array([[[1,2,3,4,5], [6,7,8,9,10]], [[2,4,6,8,10], [1,3,5,7,9]]])
+    return arr[1,0,3]
+
+# print(access_3_d_elements())
+
+def slicing_array():
+    arr = np.array([1,2,3,4,5,6,7,8,9,10])
+    return arr[1:8:2]
+
+# print(slicing_array())
+
+def dtype_of_array():
+    arr = np.array([1,2,3,4,5])
+    return arr.dtype
+
+# print(dtype_of_array())
+
+def dtype_of_str_array():
+    arr = np.array(['strawberries', 'blueberries', 'dragonfruit'])
+    return arr.dtype
+
+# print(dtype_of_str_array())
+
+def say_hello():
+    return 'hello'
+
+say_hello()
+
 
 
 

@@ -1,9 +1,8 @@
-import pandas as pd
+def reverse(list):
+    return print(list[::-1])
 
-data = pd.read_csv('pand_data.csv')
-print(data.head())
-    
+list = [1,2,3,4,5]
 
-
+reverse(list)
 
     
