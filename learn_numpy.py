@@ -106,11 +106,44 @@ def dtype_of_str_array():
 
 # print(dtype_of_str_array())
 
-def say_hello():
-    return 'hello'
+def change_dtype_of_array():
 
-say_hello()
+    arr = np.array([1,2,3,4,5])
 
+
+    newarr = arr.astype(dtype='f')
+
+    return arr, newarr
+
+# print(change_dtype_of_array())
+
+
+
+def copy():
+    arr = np.array([1,2,3,4,5,42])
+    copy_of_array = arr.copy()
+    arr[5] = 6
+    return arr, copy_of_array, copy_of_array.base
+
+# print(copy())
+
+
+def view():
+    arr = np.array([1,2,3,4,5,42])
+    view_of_array = arr.view()
+    arr[5] = 6
+    return arr, view_of_array, view_of_array.base 
+
+# print(view())
+
+print(np.arange(12))
+
+def reshape():
+    arr = np.array([1,2,3,4,5,6,7,8,9,10,11,12])
+    newarr = arr.reshape(4,3)
+    return arr, newarr
+
+print(reshape())
 
 
 
