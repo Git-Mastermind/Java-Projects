@@ -136,14 +136,23 @@ def view():
 
 # print(view())
 
-print(np.arange(12))
+
 
 def reshape():
     arr = np.array([1,2,3,4,5,6,7,8,9,10,11,12])
     newarr = arr.reshape(4,3)
-    return arr, newarr
+    return newarr
 
-print(reshape())
+# print(reshape())
+
+
+def flatten_array():
+    arr = np.array([[[1,2,3,4,5], [6,7,8,9,10]], [[2,4,6,8,10], [1,3,5,7,9]]])
+    flattened_arr = arr.reshape(-1)
+    return flattened_arr
+
+print(flatten_array())
+
 
 
 
