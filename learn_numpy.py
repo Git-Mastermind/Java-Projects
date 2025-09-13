@@ -151,7 +151,46 @@ def flatten_array():
     flattened_arr = arr.reshape(-1)
     return flattened_arr
 
-print(flatten_array())
+# print(flatten_array())
+
+def array_iteration():
+    arr = np.array([1,2,3,4,5])
+    for num in arr:
+        print(num)
+
+    
+# array_iteration()
+
+def two_dimension_array_iteration():
+    arr = np.array([[1,2,3], [4,5,6]])
+    for x in arr:
+        for y in x:
+            print(y)
+        
+
+
+# two_dimension_array_iteration()
+
+def nditer():
+    arr = np.array([[1,2,3], [4,5,6]])
+    for x in np.nditer(arr):
+        print(x)
+
+# nditer()
+
+def op_dtypes():
+    arr = [[[1,2,3], [4,5,6]]]
+    for x in np.nditer(arr, flags=['buffered'], op_dtypes=['S']):
+        print(x)
+    
+# op_dtypes()
+
+def ndenumerate():
+    arr = np.array([[1,2,3], [4,5,6]])
+    for idx, x in np.ndenumerate(arr):
+        print(idx, x)
+
+ndenumerate()
 
 
 
