@@ -414,7 +414,7 @@ def shape_review():
 def graphing():
     x = np.array([0,6])
     y = np.array([1,0])
-    mat.plot(y, marker='+')
+    mat.plot(y, marker='o')
     mat.show()
 
 graphing()
