@@ -251,7 +251,24 @@ def array_split():
 
     return np.array_split(arr, 2)
 
-print(array_split())
+# print(array_split())
+
+def two_d_array_split():
+    arr = np.array([[1,2], [2,3], [4,5], [6,7], [8,9]])
+
+    return np.array_split(arr, 3)
+
+# print(two_d_array_split())
+
+def hsplit():
+    arr = np.array([[0,1], [2,3], [4,5], [6,7], [8,9]])
+
+    return np.hsplit(arr, 2)
+
+# print(hsplit())
+
+arr = np.array([1,2,3,4,5])
+print(arr[:2])
 
 
 
