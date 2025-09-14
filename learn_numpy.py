@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as mat
 
 
 def version():
@@ -243,6 +244,7 @@ def dstack():
 
     return np.dstack((arr1, arr2))
 
+
 # print(dstack())
 
 
@@ -251,12 +253,14 @@ def array_split():
 
     return np.array_split(arr, 2)
 
+
 # print(array_split())
 
 def two_d_array_split():
     arr = np.array([[1,2], [2,3], [4,5], [6,7], [8,9]])
 
     return np.array_split(arr, 3)
+
 
 # print(two_d_array_split())
 
@@ -265,10 +269,173 @@ def hsplit():
 
     return np.hsplit(arr, 2)
 
+
 # print(hsplit())
 
-arr = np.array([1,2,3,4,5])
-print(arr[:2])
+def array_search():
+    arr = np.array([1,8,2,2,8,5,3,2])
+    x = np.where(arr == 2)
+
+    return x
+
+
+# print(array_search())
+
+def searchsorted():
+    arr =  np.array([1,3,4,5])
+    x = np.searchsorted(arr, 2, side='left')
+
+    return x
+
+
+# print(searchsorted())
+
+def multiple_searchsorted_values():
+    arr = np.array([1,3,7,9])
+    x = np.searchsorted(arr, [2, 6, 8], side='left')
+
+    return x
+
+
+# print(multiple_searchsorted_values())
+
+def sort_by_value():
+    arr = np.array([1,9,2,8,3,7,4,6,5])
+    sort_array = np.sort(arr)
+
+    return sort_array
+
+
+# print(sort_by_value())
+
+def sort_alphabetically():
+    fruits_arr = np.array(['banana', 'cherry', 'apple'])
+    sort_array = np.sort(fruits_arr)
+
+    return sort_array
+
+
+# print(sort_alphabetically())
+
+def sort_by_boolean():
+    boolean_arr = np.array([True, False, True, False])
+    sort_array = np.sort(boolean_arr)
+
+    return sort_array
+
+
+# print(sort_by_boolean())
+
+def sort_two_d_arrays():
+    arr = np.array([[1,2,3], [4,5,6]])
+    sort_array = np.sort(arr)
+
+    return sort_array
+
+
+# print(sort_two_d_arrays())
+
+def filter_array():
+    arr = np.array([0,1,2,3,4,5,6,7,8,9])
+    filter_booleans = [True, False, True, False, True, False, True, False, True, False]
+    newarr = arr[filter_booleans]
+
+    return newarr
+
+
+# print(filter_array())
+
+def conditional_filter_array():
+    arr = np.array([0,1,2,3,4,5,6,7,8,9])
+    filter_booleans = []
+    
+    for element in arr:
+        if element % 2 != 0:
+            filter_booleans.append(True)
+        else:
+            filter_booleans.append(False)
+    
+    newarr = arr[filter_booleans]
+
+    return newarr
+
+
+# print(conditional_filter_array())
+
+
+def filter_big_numbers():
+    arr = np.array([1,2,3,4,5,6])
+    big_nums = arr > 3
+    newarr = arr[big_nums]
+    return newarr
+
+
+# print(filter_big_numbers())
+
+
+def filter_even_numbers():
+    arr = np.array([0,1,2,3,4,5,6,7,8,9])
+
+    even_nums = arr % 2 == 0
+    even_arr = arr[even_nums]
+
+    return even_arr
+
+
+# print(filter_even_numbers())
+
+def copy_review():
+    arr = np.array([1,2,3,4,5,6])
+    arr_copy = arr.copy()
+    arr[0] = 5
+
+    return arr_copy
+
+
+# print(copy_review())
+
+def view_review():
+    arr = np.array([1,2,3,4,5,6])
+    arr_view = arr.view()
+    arr[0] = 5
+
+    return arr_view
+
+
+# print(view_review())
+
+def shape_review():
+    arr = np.array([[1,2,3], [4,5,6]])
+    return np.shape(arr)
+
+
+# print(shape_review())
+
+def graphing():
+    x = np.array([0,6])
+    y = np.array([1,0])
+    mat.plot(y, marker='+')
+    mat.show()
+
+graphing()
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
 
 
 
