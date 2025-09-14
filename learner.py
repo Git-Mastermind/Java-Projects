@@ -2203,6 +2203,23 @@ def older_than_15():
 
 # print(older_than_15())
 
+def binary_to_decimal():
+    binary_num_input = input('Enter a number in binary: ')
+    binary_nums = list(binary_num_input)
+
+    result = 0
+
+    for i in range(len(binary_nums)):
+        if binary_nums[-(i+1)] == '1':
+            result += 2**i
+
+    return result
+
+# print(binary_to_decimal())
+
+
+    
+
 
 
 

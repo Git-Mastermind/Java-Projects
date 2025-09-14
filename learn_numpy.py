@@ -209,9 +209,49 @@ arr2 = np.array([[1,3,5], [2,4,6]])
 
 concat_arrays = np.concatenate((arr1, arr2), axis=1)
 
-print(concat_arrays)
+# print(concat_arrays)
+
+def stack():
+    arr1 = np.array([1,2,3])
+    arr2 = np.array([4,5,6])
+
+    return np.stack((arr1, arr2))
+
+# print(stack())
 
 
+def hstack():
+    arr1 = np.array([1,2,3])
+    arr2 = np.array([4,5,6])
+
+    return np.hstack((arr1, arr2))
+
+# print(hstack())
+
+
+def vstack():
+    arr1 = np.array([1,2,3])
+    arr2 = np.array([4,5,6])
+
+    return np.vstack((arr1, arr2))
+
+# print(vstack())
+
+def dstack():
+    arr1 = np.array([1,2,3])
+    arr2 = np.array([4,5,6])
+
+    return np.dstack((arr1, arr2))
+
+# print(dstack())
+
+
+def array_split():
+    arr = np.array([1,2,3,4,5,6])
+
+    return np.array_split(arr, 2)
+
+print(array_split())
 
 
 
