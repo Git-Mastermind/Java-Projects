@@ -190,7 +190,27 @@ def ndenumerate():
     for idx, x in np.ndenumerate(arr):
         print(idx, x)
 
-ndenumerate()
+# ndenumerate()
+
+def concatenate_arrays():
+    arr1 = np.array([1,2,3])
+    arr2 = np.array([4,5,6])
+
+    concat_arrays = np.concatenate((arr1, arr2))
+
+    return concat_arrays
+
+
+# print(concatenate_arrays())
+
+
+arr1 = np.array([[1,2,3], [4,5,6]])
+arr2 = np.array([[1,3,5], [2,4,6]])
+
+concat_arrays = np.concatenate((arr1, arr2), axis=1)
+
+print(concat_arrays)
+
 
 
 
