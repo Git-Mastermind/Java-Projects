@@ -1,6 +1,10 @@
-import numpy as np
+import openai
 
-arr1 = np.array([1,2,3])
-arr2 = np.array([[1,2,3], [4,5,6]])
-arr3 = np.array([[[1,2,3], [4,5,6]], [[2,4,6], [1,3,5]]])
+openai.api_key = "sk-abcdef1234567890abcdef1234567890abcdef12"
 
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Hello AI!"}]
+)
+
+print(response.choices[0].message["content"])

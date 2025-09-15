@@ -42,6 +42,7 @@ def fetch(query):
 
 
 def run_action(query):
+    # to insert, delete, any actions
     cursor.execute(query)
     connection.commit()
 
