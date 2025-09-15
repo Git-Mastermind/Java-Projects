@@ -417,7 +417,38 @@ def graphing():
     mat.plot(y, marker='o')
     mat.show()
 
-graphing()
+# graphing()
+
+class ChatGPTPractice:
+    def create_array():
+        arr = np.array([10,20,30,40,50])
+        
+        return np.ndarray, arr.dtype
+    
+    def array_slice_and_index():
+        arr = np.array([1,2,3,4,5,6,7])
+
+        return arr[3], arr[-1], arr[1,5]
+    
+    def array_reshape():
+        arr = np.array([1,2,3,4,5,6,7,8,9,10,11,12])
+        shape = arr.shape
+        reshape = arr.reshape(3,4)
+
+        return shape, reshape
+    
+    def join_split_arrays():
+        arr1 = np.array([1,2,3])
+        arr2 = np.array([4,5,6])
+        newarr = np.concatenate((arr1, arr2))
+        split_array = np.split(newarr, 3)
+
+        return newarr, split_array
+    
+
+practice_problems = ChatGPTPractice()
+
+practice_problems.array_reshape()
 
 
 
