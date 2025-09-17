@@ -1,10 +1,7 @@
-import openai
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as mat
 
-openai.api_key = "sk-abcdef1234567890abcdef1234567890abcdef12"
-
-response = openai.ChatCompletion.create(
-    model="gpt-4",
-    messages=[{"role": "user", "content": "Hello AI!"}]
-)
-
-print(response.choices[0].message["content"])
+data = pd.read_csv('sales.csv')
+avg_burgers = np.mean(data['Burgers'])
+print(f'Avg Burgers sold: {avg_burgers}')

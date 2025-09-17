@@ -448,7 +448,6 @@ class ChatGPTPractice:
 
 practice_problems = ChatGPTPractice()
 
-practice_problems.array_reshape()
 
 
 
