@@ -1,12 +1,11 @@
-from flask import Flask
+import numpy as np
+import pandas as pd
 
-app = Flask(__name__)
-
-@app.route('/hello_world')
-
-def hello():
-    return 'hello world '
-    
-
-if __name__ == '__main__':
-    app.run(debug=True)
+data = {
+    'name':'Eshan',
+    'age':13,
+    'studend ID':1078890,
+    'gender':'Male'
+}
+df = pd.DataFrame(data)
+print(df.to_string())
