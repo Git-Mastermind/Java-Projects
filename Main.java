@@ -6,8 +6,18 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello friends!");
-}
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Temp: ");
+        int temperature = scanner.nextInt();
+        if (temperature > 65) {
+            System.out.println("It's a hot day! Drink plenty of water");
+        }
+    else if (temperature > 20 && temperature < 30) {
+        System.out.println("It's a nice day");
+    }
+    else {
+        System.out.println("It's cold");
+    }
 
     
 
@@ -43,7 +53,7 @@ public class Main {
 
 
 
-
+}
 
     public void mortgageCalculater() {
         Scanner scanner = new Scanner(System.in);
