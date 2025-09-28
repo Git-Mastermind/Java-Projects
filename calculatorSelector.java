@@ -1,64 +1,35 @@
-import java.util.Arrays;
-import java.util.Date;
-import java.awt.*;
 import java.text.NumberFormat;
 import java.util.Scanner;
 
+public class calculatorSelector {
+    public void mortgageCalculater() {
+        Scanner scanner = new Scanner(System.in);
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENT = 100;
+        System.out.print("Principal: ");
+        int principal = scanner.nextInt();
+
+        System.out.print("Annual Interest Rate: ");
+        float annualInterest = scanner.nextFloat();
+        float rate = annualInterest / PERCENT / MONTHS_IN_YEAR;
+
+        System.out.print("Period (Years): ");
+        int period = scanner.nextInt();
+        int months = period * MONTHS_IN_YEAR;
+
+        double numeratorRate = Math.pow(1+rate, months);
+
+        double numerator = rate * numeratorRate;
+        double denominator = numeratorRate - 1;
+        double result = principal * (numerator/denominator);
+        NumberFormat mortgage = NumberFormat.getCurrencyInstance();
+        String finalMortgage = mortgage.format(result);
+        System.out.println("Monthly Mortgage: " + finalMortgage);
 
 
-public class Main {
-    public static void main(String[] args) {
-        Calculator calculator = new Calculator();
-        System.out.println(calculator.pow(3,3));
-        
+    }
 
-
-
-        
-         
-
-
-
-
-        
-        
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Projects
-
-
-}
-    public void advancedMortgageCalculater() {
+        public void advancedMortgageCalculater() {
         Scanner scanner = new Scanner(System.in);
         final byte MONTHS_IN_YEAR = 12;
         final byte PERCENT  = 100;
@@ -117,36 +88,8 @@ public class Main {
 
 
         }
-            
 
-    public void mortgageCalculater() {
-        Scanner scanner = new Scanner(System.in);
-        final byte MONTHS_IN_YEAR = 12;
-        final byte PERCENT = 100;
-        System.out.print("Principal: ");
-        int principal = scanner.nextInt();
-
-        System.out.print("Annual Interest Rate: ");
-        float annualInterest = scanner.nextFloat();
-        float rate = annualInterest / PERCENT / MONTHS_IN_YEAR;
-
-        System.out.print("Period (Years): ");
-        int period = scanner.nextInt();
-        int months = period * MONTHS_IN_YEAR;
-
-        double numeratorRate = Math.pow(1+rate, months);
-
-        double numerator = rate * numeratorRate;
-        double denominator = numeratorRate - 1;
-        double result = principal * (numerator/denominator);
-        NumberFormat mortgage = NumberFormat.getCurrencyInstance();
-        String finalMortgage = mortgage.format(result);
-        System.out.println("Monthly Mortgage: " + finalMortgage);
-
-
-    }
-
-    public void tipCalculater() {
+        public void tipCalculater() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Total: ");
         double totalBill = scanner.nextFloat();
@@ -162,23 +105,33 @@ public class Main {
         System.out.println(finalBill);
     }
 
-    public void fizzBuzz() {
+    public void calculator() {
+        Calculator obj = new Calculator();
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Number: ");
-        int number = scanner.nextInt();
+        System.out.print("(A)dd, (S)ubtract, (M)ultiply or (D)ivide?: ");
+        String inputOperation = scanner.next().toLowerCase();
 
-        if (number % 5 == 0 && number % 3 == 0)
-            System.out.println("FizzBuzz"); 
-        else if (number % 5 == 0) 
-            System.out.println("Fizz");
-        else if (number % 3 == 0)
-            System.out.println("Buzz");
-        else
-            System.out.println(number);
+        
+        System.out.print("Number 1: ");
+        int numberOne = scanner.nextInt();
+
+        System.out.print("Number 2: ");
+        int numberTwo = scanner.nextInt();
+
+        if (inputOperation.equals("a")) {
+            System.out.println(obj.add(numberOne, numberTwo));
+        }
+
+        else if (inputOperation.equals("s")) {
+            System.out.println(obj.subtract(numberOne, numberTwo));
+        }
+
+        else if (inputOperation.equals("m")) {
+            System.out.println(obj.multiply(numberOne, numberTwo));
+        }
+
+        else if (inputOperation.equals("d")) {
+            System.out.println(obj.divide(numberOne, numberTwo));
+        }
     }
-
-
-    
-} 
-
-
+}
