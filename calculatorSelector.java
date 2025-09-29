@@ -1,7 +1,7 @@
 import java.text.NumberFormat;
 import java.util.Scanner;
 
-public class calculatorSelector {
+public class CalculatorSelector {
     public void mortgageCalculater() {
         Scanner scanner = new Scanner(System.in);
         final byte MONTHS_IN_YEAR = 12;
