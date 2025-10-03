@@ -25,6 +25,7 @@ public class CalculatorSelector {
         NumberFormat mortgage = NumberFormat.getCurrencyInstance();
         String finalMortgage = mortgage.format(result);
         System.out.println("Monthly Mortgage: " + finalMortgage);
+        scanner.close();
 
 
     }
@@ -34,9 +35,9 @@ public class CalculatorSelector {
         final byte MONTHS_IN_YEAR = 12;
         final byte PERCENT  = 100;
 
-        int principal = 0;
-        double annualInterestRate = 0;
-        int periodInYears = 0;
+        int principal;
+        double annualInterestRate;
+        int periodInYears;
 
         while (true) {
             System.out.print("Principal ($1K - $1M): ");
@@ -65,7 +66,7 @@ public class CalculatorSelector {
         while (true) {
         System.out.print("Period (Years): ");
         periodInYears = scanner.nextInt();
-        if (periodInYears >= 10 && periodInYears <= 30) {
+        if (periodInYears >= 1 && periodInYears <= 30) {
             break;
         }
         else {
@@ -84,7 +85,7 @@ public class CalculatorSelector {
         NumberFormat currency = NumberFormat.getCurrencyInstance();
         String mortgage = currency.format(mortgageCalculation);
         System.out.println(mortgage);
-
+        scanner.close();
 
 
         }
@@ -103,6 +104,7 @@ public class CalculatorSelector {
 
         String finalBill = currency.format(totalAmount);
         System.out.println(finalBill);
+        scanner.close();
     }
 
     public void calculator() {
@@ -133,5 +135,6 @@ public class CalculatorSelector {
         else if (inputOperation.equals("d")) {
             System.out.println(obj.divide(numberOne, numberTwo));
         }
+        scanner.close();
     }
 }
