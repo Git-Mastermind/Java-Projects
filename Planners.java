@@ -1,4 +1,5 @@
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Planners {
@@ -237,6 +238,100 @@ public class Planners {
 
         }
         
+
+    }
+    }
+
+    public void taskManager() {
+        Main main = new Main();
+        Scanner scanner = new Scanner(System.in);
+
+        ArrayList<String> tasks = new ArrayList<String>();
+        ArrayList<String> importantTasks = new ArrayList<String>();
+        ArrayList<String> taskCategories = new ArrayList<String>();
+        while (true) {
+            
+            System.out.println("""
+                    Task Manager
+                        1: Add Task
+                        2: Mark Task as Done
+                        3: Remove Tasks
+                        4: View Tasks
+                        5: Exit
+                    """);
+        
+        
+            System.out.print("Choose an option: ");
+            int optionInput = scanner.nextInt();
+
+            if (optionInput == 1) {
+                System.out.println("Loading page...");
+                try {
+                    Thread.sleep(2000);
+                }
+                catch (InterruptedException e) {
+                    System.out.println("Error!");
+                }
+
+                System.out.print("Name: ");
+                String taskName = scanner.nextLine();
+                tasks.add(taskName);
+
+                System.out.print("Category (ex. Grocery, Travel): ");
+                String taskCategory = scanner.nextLine();
+                taskCategories.add(taskCategory);
+
+                System.out.print("Importance (Low, Medium, High): ");
+                String taskImportance = scanner.nextLine();
+                importantTasks.add(taskImportance);
+
+                System.out.println("Logging task...");
+                main.sleep();
+                
+                System.out.println("Task Logged!");
+                main.sleep();
+                
+                
+            }
+
+            else if (optionInput == 2) {
+                System.out.println("Loading page...");
+                main.sleep();
+                int numberOfTasks = tasks.size();
+                if (numberOfTasks == 0) {
+                    System.out.println("No tasks!");
+                }
+                
+                else {
+                    System.out.println("Which task would you like to mark as complete?");
+                    for (int i = 0; i < numberOfTasks; i++) {
+                        System.out.println((i + 1) + ": " + tasks.get(i));
+                    }
+                }
+                
+                
+                
+            }
+            else if (optionInput == 3) {
+                System.out.println(tasks);
+            }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
     }
