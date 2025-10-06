@@ -405,6 +405,7 @@ public class Planners {
                 System.out.println("Invalid!!!");
                 time.sleep(1000);
             }
+            scanner.close();
 
 
 
