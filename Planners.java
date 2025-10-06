@@ -243,7 +243,7 @@ public class Planners {
     }
 
     public void taskManager() {
-        Main main = new Main();
+        Time time = new Time();
         Scanner scanner = new Scanner(System.in);
 
         ArrayList<String> tasks = new ArrayList<String>();
@@ -257,12 +257,14 @@ public class Planners {
                         2: Mark Task as Done
                         3: Remove Tasks
                         4: View Tasks
-                        5: Exit
+                        5: View Important Tasks
+                        6: Exit
                     """);
         
         
             System.out.print("Choose an option: ");
             int optionInput = scanner.nextInt();
+            scanner.nextLine();
 
             if (optionInput == 1) {
                 System.out.println("Loading page...");
@@ -277,63 +279,138 @@ public class Planners {
                 String taskName = scanner.nextLine();
                 tasks.add(taskName);
 
-                System.out.print("Category (ex. Grocery, Travel): ");
+                System.out.print("Category (ex. Buy Groceries, Family Trip): ");
                 String taskCategory = scanner.nextLine();
                 taskCategories.add(taskCategory);
 
-                System.out.print("Importance (Low, Medium, High): ");
-                String taskImportance = scanner.nextLine();
-                importantTasks.add(taskImportance);
+                System.out.print("Importance ((L)ow, (M)edium, (H)igh): ");
+                String taskImportance = scanner.nextLine().toLowerCase();
+                if (taskImportance.equals("h")) {
+                    importantTasks.add(taskName);
+                }
 
                 System.out.println("Logging task...");
-                main.sleep();
+                time.sleep(2000);
                 
                 System.out.println("Task Logged!");
-                main.sleep();
+                time.sleep(2000);
                 
                 
             }
 
             else if (optionInput == 2) {
                 System.out.println("Loading page...");
-                main.sleep();
+                time.sleep(2000);
                 int numberOfTasks = tasks.size();
                 if (numberOfTasks == 0) {
                     System.out.println("No tasks!");
                 }
                 
                 else {
-                    System.out.println("Which task would you like to mark as complete?");
+                    System.out.print("Which task would you like to mark as complete?");
                     for (int i = 0; i < numberOfTasks; i++) {
                         System.out.println((i + 1) + ": " + tasks.get(i));
                     }
+                    int finishTaskNumber = scanner.nextInt();
+                    scanner.nextLine();
+                    tasks.remove(finishTaskNumber - 1);
+
+                    System.out.println("Marking task as finished...");
+                    time.sleep(2000);
+
+                    System.out.println("Removing task...");
+                    time.sleep(1000);
+                    
+                    System.out.println("Rebooting visuals... ");
+                    time.sleep(1000);
                 }
                 
                 
                 
             }
             else if (optionInput == 3) {
-                System.out.println(tasks);
-            }
+                System.out.println("Loading page...");
+                time.sleep(2000);
+                int numberOfTasks = tasks.size();
+                if (numberOfTasks == 0) {
+                    System.out.println("No tasks!");
+                    System.out.println("Rebooting Visuals...");
+                    time.sleep(1000);
+                    
+                }
+                
+                else {
+                    System.out.print("Which task would you like to remove? ");
+                    for (int i = 0; i < numberOfTasks; i++) {
+                        System.out.println((i + 1) + ": " + tasks.get(i));
+                    }
+                   int removeTask = scanner.nextInt();
+                    scanner.nextLine();
+
+                    tasks.remove(removeTask - 1);
+                    System.out.println("Removing task...");
+                    time.sleep(2000);
+
+                    System.out.println("Rebooting Visuals...");
+                    time.sleep(1000);
     
+            }
+                   
+
+
+            }
+            else if (optionInput == 4) {
+                System.out.println("Loading page...");
+                time.sleep(2000);
+                int numberOfTasks = tasks.size();
+                if (numberOfTasks == 0) {
+                    System.out.println("No tasks!");
+                }
+                
+                else {
+                    for (int i = 0; i < numberOfTasks; i++) {
+                        System.out.println((i + 1) + ": " + tasks.get(i));
+                    }
+            }       time.sleep(5000);
+
+            }
+            else if (optionInput == 5) {
+                time.loadPage(2000);
+                int numberOfTasks = importantTasks.size();
+                if (numberOfTasks == 0) {
+                    System.out.println("No tasks!");
+                }
+                else {
+                    for (int i = 0; i < numberOfTasks; i++) {
+                        System.out.println((i + 1) + ": " + importantTasks.get(i));
+                    }
+                    time.sleep(5000);
+                }
+                
+            }
+            else if (optionInput == 6) {
+                time.loadPage(2000);
+                System.out.print("Exit (y/n)? ");
+                String exitInput = scanner.nextLine().toLowerCase();
+
+                if (exitInput.equals("y")) {
+                    System.out.println("Goodbye!!!");
+                    System.exit(0);
+                }
+                else if (exitInput.equals("n")) {
+                    System.out.println("Thanks for staying with us!");
+                }
+            }
+            else {
+                System.out.println("Invalid!!!");
+                time.sleep(1000);
+            }
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-    }
+}
+}
