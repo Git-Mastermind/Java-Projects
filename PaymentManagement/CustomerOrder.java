@@ -1,5 +1,7 @@
 package PaymentManagement;
 
+import java.util.Scanner;
+
 public class CustomerOrder {
     String name;
     long cardNumber;
@@ -16,12 +18,22 @@ public class CustomerOrder {
     }
 
     public void customerOrder() {
+        Scanner scanner = new Scanner(System.in);
         MerchantBankDetails merchantBankDetails = new MerchantBankDetails("Amazon", 4444-5555-6666-7777, 456);
         String name = "Eshan Jha";
-        long cardNumber = 0000-1111-2222-3333;
+        String cardNumber = "378282246310005";
         int cvvNumber = 123;
         String billingAddress = "136 239th Way SE";
         String expirationDate = "2029-09-17";
+        byte paymentProcessorSelector = 1;
+        if (paymentProcessorSelector == 1) {
+            PaymentProcessor stripe = new PaymentProcessor("Stripe");
+        }
+        else if (paymentProcessorSelector == 2) {
+            PaymentProcessor pTech = new PaymentProcessor("pTech");
+        }
+        String paymentProcessorName = scanner.nextLine();
+        PaymentProcessor paymentProcessor = new PaymentProcessor(paymentProcessorName);
         Merchant amazon = new Merchant("Amazon", merchantBankDetails);
         amazon.receivePayment(cardNumber, cvvNumber, billingAddress, expirationDate);
     }

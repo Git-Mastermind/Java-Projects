@@ -6,7 +6,7 @@ public class IssuerBank {
         this.name = name;
     }
 
-    public void processPayment(long customerCardNumber, int cvvNumber, String billingAddress, String expirationDate) {
-        
+    public String processPayment(String customerCardNumber, int cvvNumber, String billingAddress, String expirationDate) {
+        return "856";
     }
 }
