@@ -1,10 +1,17 @@
 package PaymentManagement;
-abstract class CardNetwork {
-    String name;
+public class CardNetwork {
+    String cardNetworkName;
+    String issuerBankName;
 
-    abstract void receiveDetails();
+    public CardNetwork(String cardNetworkName, String issuerBankName) {
+        this.cardNetworkName = cardNetworkName;
+        this.issuerBankName = issuerBankName;
+    }
 
-    abstract void sendCustomerBankDetails();
+    public void processPayment(long customerCardNumber, int cvvNumber, String billingAddress, String expirationDate) {
+        IssuerBank issuerBank = new IssuerBank(issuerBankName);
 
-    abstract void sendTransactionDetails();
+        issuerBank.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
+    }
+    
 }

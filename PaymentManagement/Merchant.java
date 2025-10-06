@@ -1,14 +1,17 @@
 package PaymentManagement;
-abstract class Merchant {
+class Merchant {
     String name;
+    MerchantBankDetails bankDetails;
 
-    abstract void callPaymentProcessor();
+    public Merchant(String name, MerchantBankDetails bankDetails) {
+        this.name = name;
+        this.bankDetails = bankDetails;
+    }
 
-    abstract void sendCustomerBankDetails();
-
-    abstract void sendMerchantBankDetails();
-
-    abstract void sendPaymentAmount();
+    public void receivePayment(long customerCardNumber, int cvvNumber, String billingAddress, String expirationDate) {
+        PaymentProcessor paymentProcessor = new PaymentProcessor();
+        paymentProcessor.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
+    }
 
 
 }

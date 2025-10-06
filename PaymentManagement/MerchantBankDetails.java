@@ -1,9 +1,13 @@
 package PaymentManagement;
-abstract class MerchantBankDetails {
+public class MerchantBankDetails {
     String merchantName;
     long bankAccountNumber;
     int routerNumber;
 
-    abstract void sendMerchantBankDetails();
+    public MerchantBankDetails(String merchantName, long bankAccountNumber, int routerNumber) {
+        this.merchantName = merchantName;
+        this.bankAccountNumber = bankAccountNumber;
+        this.routerNumber = routerNumber;
+    }
 
 }

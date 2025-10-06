@@ -1,10 +1,12 @@
 package PaymentManagement;
-abstract class IssuerBank {
+public class IssuerBank {
     String name;
 
-    abstract void receiveTransactionDetails();
+    public IssuerBank(String name) {
+        this.name = name;
+    }
 
-    abstract void sendAuthorizationCode();
-
-    abstract void sendDeclineCode();
+    public void processPayment(long customerCardNumber, int cvvNumber, String billingAddress, String expirationDate) {
+        
+    }
 }

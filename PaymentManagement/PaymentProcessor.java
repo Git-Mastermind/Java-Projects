@@ -1,12 +1,19 @@
 package PaymentManagement;
-abstract class PaymentProcessor {
-    String name;
+public class PaymentProcessor {
+    String cardNetworkName;
+    String issuerBankName;
 
-    abstract void sendCustomerBankDetails();
 
-    abstract void receiveDetails();
+    public PaymentProcessor(String cardNetworkString, String issuerBankName) {
+        this.cardNetworkName = cardNetworkName;
+        this.issuerBankName = issuerBankName;
+        
+    }
 
-    abstract void sendTransactionDetails();
+    public void processPayment(long customerCardNumber, int cvvNumber, String billingAddress, String expirationDate) {
+        CardNetwork cardNetwork = new CardNetwork(cardNetworkName, issuerBankName);
 
-    abstract void sendPaymentToMerchant();
+        cardNetwork.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
+    }
+
 }
