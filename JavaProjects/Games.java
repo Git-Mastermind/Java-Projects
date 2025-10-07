@@ -57,7 +57,9 @@ public class Games {
                     numberOfGuesses--;
                 }
             }
+            scanner.close();
         }
+        
         
     }
  
