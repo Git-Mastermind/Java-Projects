@@ -16,10 +16,6 @@ public class Games {
             System.out.println(number);
         scanner.close();
     }
-
-    public void numeberGuesser() {
-        Scanner scanner = new Scanner(System.in);
-        int randomNumber = ((int) Math.random()) * 100;
-        System.out.println(randomNumber);
-    }
+ 
+    
 }
