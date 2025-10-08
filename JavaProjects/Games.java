@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Games {
@@ -62,6 +64,60 @@ public class Games {
         
         
     }
+
+    public void rockPaperScissors() {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        Time time = new Time();
+
+        String[] rps = { "r", "p", "s" };
+
+        while (true) {
+        int randomIndex = random.nextInt(rps.length);
+        String rpsComputerChoice = rps[randomIndex];
+
+        System.out.print("(R)ock, (P)aper or (S)cissors? ");
+        String rpsChoice = scanner.nextLine().toLowerCase();
+        System.out.println("Computer: " + rpsComputerChoice);
+        System.out.println("You: " + rpsChoice);
+        if (rpsChoice.equals("quit")) {
+            System.out.println("Goodbye!");
+            System.exit(1);
+        }
+        else if (rpsComputerChoice.equals(rpsChoice)) {
+            System.out.println("Tie!");
+        }
+        else if (rpsComputerChoice.equals("r") && rpsChoice.equals("s")) {
+            System.out.println("Computer wins!");
+            time.sleep(500);
+        }
+        else if (rpsComputerChoice.equals("r") && rpsChoice.equals("p")) {
+            System.out.println("You win!");
+            time.sleep(500);
+        }
+        else if (rpsComputerChoice.equals("p") && rpsChoice.equals("r")) {
+            System.out.println("Computer wins!");
+            time.sleep(500);
+        }
+        else if (rpsComputerChoice.equals("p") && rpsChoice.equals("s")) {
+            System.out.println("You win!");
+            time.sleep(500);
+        }
+        else if (rpsComputerChoice.equals("s") && rpsChoice.equals("r")) {
+            System.out.println("You win!");
+            time.sleep(500);
+        }
+        else if (rpsComputerChoice.equals("s") && rpsChoice.equals("p")) {
+            System.out.println("Computer wins!");
+            time.sleep(500);
+        }
+
+        
+
+        
+
+    }   
  
     
+}
 }

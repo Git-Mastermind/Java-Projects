@@ -36,7 +36,6 @@ public class CustomerOrder {
         PaymentProcessor paymentProcessor = new PaymentProcessor(paymentProcessorName);
         Merchant amazon = new Merchant("Amazon", merchantBankDetails);
         amazon.receivePayment(cardNumber, cvvNumber, billingAddress, expirationDate);
-        IssuerBank bankTest = new IssuerBank("Chase");
         
     }
 }
