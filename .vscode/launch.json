@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Playground",
+            "request": "launch",
+            "mainClass": "Java.Playground",
+            "projectName": "Python-Projects_bb84007e"
+        },
+        {
+            "type": "java",
             "name": "CustomerOrder",
             "request": "launch",
             "mainClass": "PaymentManagement.CustomerOrder",
