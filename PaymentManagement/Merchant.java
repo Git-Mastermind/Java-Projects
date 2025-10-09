@@ -20,5 +20,9 @@ class Merchant {
         paymentProcessor.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
     }
 
+    public void getAuthorizationCode(String authorizationCode) {
+        
+    }
+
 
 }

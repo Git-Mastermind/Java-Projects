@@ -22,6 +22,10 @@ public class PaymentProcessor {
         
     }
 
+    public void getAuthorizationCode(String authorizationCode) {
+        System.out.println(authorizationCode);
+    }
+
 
 
 

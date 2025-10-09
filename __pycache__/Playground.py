@@ -1,4 +1,6 @@
-import pandas as pd 
+from deep_translator import GoogleTranslator
+while True:
+    text = input("Enter text in English: ")
+    translation = GoogleTranslator(source="en", target="es").translate(text)
+    print(f"Spanish translation: {translation}")
 
-data = pd.read_csv("data.csv")
-print(data.corr())
