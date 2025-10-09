@@ -17,7 +17,7 @@ public class CustomerOrder {
         this.expirationDate = expirationDate;
     }
 
-    public void customerOrder() {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         MerchantBankDetails merchantBankDetails = new MerchantBankDetails("Amazon", 4444-5555-6666-7777, 456);
         String name = "Eshan Jha";
@@ -37,5 +37,9 @@ public class CustomerOrder {
         Merchant amazon = new Merchant("Amazon", merchantBankDetails);
         amazon.receivePayment(cardNumber, cvvNumber, billingAddress, expirationDate);
         
+    }
+
+    public void receivedAuthorizationCode() {
+        System.out.println("Authorization Code Received!");
     }
 }

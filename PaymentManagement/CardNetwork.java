@@ -14,26 +14,39 @@ public class CardNetwork {
         if (customerCardNumber.startsWith("4")) {
             IssuerBank visa = new IssuerBank("visa");
             String authorizationCode = visa.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
+            PaymentProcessor paymentProcessor = new PaymentProcessor("visa");
+            paymentProcessor.getAuthorizationCode(authorizationCode);
         }
         else if (customerCardNumber.substring(0, 1).equals("34") || customerCardNumber.substring(0,1).equals("37")) {
             IssuerBank americanExpress = new IssuerBank("american express");
             String authorizationCode = americanExpress.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
+            PaymentProcessor paymentProcessor = new PaymentProcessor("american express");
+            paymentProcessor.getAuthorizationCode(authorizationCode);
         }
         else if (customerCardNumber.substring(0, 5).equals("407372")) {
             IssuerBank wellsFargo = new IssuerBank("wells fargo");
             String authorizationCode = wellsFargo.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
+            PaymentProcessor paymentProcessor = new PaymentProcessor("wells fargo");
+            paymentProcessor.getAuthorizationCode(authorizationCode);
         }
         else if (customerCardNumber.substring(0, 7).equals("22212720") || customerCardNumber.substring(0, 3).equals("5155")) {
             IssuerBank mastercard = new IssuerBank("mastercard");
             String authorizationCode = mastercard.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
+            PaymentProcessor paymentProcessor = new PaymentProcessor("mastercard");
+            paymentProcessor.getAuthorizationCode(authorizationCode);
         }
         else if (customerCardNumber.substring(0, 5).equals("403075")) {
             IssuerBank chase = new IssuerBank("chase");
             String authorizationCode = chase.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
+            PaymentProcessor paymentProcessor = new PaymentProcessor("chase");
+            paymentProcessor.getAuthorizationCode(authorizationCode);
         }
         else {
             IssuerBank happyBankOfDoughnutsAndPiggies = new IssuerBank("Happy Bank of Doughnuts and Piggies");
             String authorizationCode = happyBankOfDoughnutsAndPiggies.processPayment(customerCardNumber, cvvNumber, billingAddress, expirationDate);
+            PaymentProcessor paymentProcessor = new PaymentProcessor("happy bank of doughnuts and piggies");
+            paymentProcessor.getAuthorizationCode(authorizationCode);
+            
         }
     }
 }
