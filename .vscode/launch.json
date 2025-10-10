@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "HelloWorld",
+            "request": "launch",
+            "mainClass": "HelloWorld",
+            "projectName": "Python-Projects_bb84007e"
+        },
+        {
+            "type": "java",
             "name": "Playground",
             "request": "launch",
             "mainClass": "Java.Playground",
