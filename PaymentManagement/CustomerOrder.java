@@ -28,6 +28,7 @@ public class CustomerOrder {
         byte paymentProcessorSelector = 1;
         if (paymentProcessorSelector == 1) {
             PaymentProcessor stripe = new PaymentProcessor("Stripe");
+            
         }
         else if (paymentProcessorSelector == 2) {
             PaymentProcessor pTech = new PaymentProcessor("pTech");
@@ -36,6 +37,7 @@ public class CustomerOrder {
         PaymentProcessor paymentProcessor = new PaymentProcessor(paymentProcessorName);
         Merchant amazon = new Merchant("Amazon", merchantBankDetails);
         amazon.receivePayment(cardNumber, cvvNumber, billingAddress, expirationDate);
+        paymentProcessor.processPayment(cardNumber, cvvNumber, billingAddress, expirationDate);
         
     }
 
