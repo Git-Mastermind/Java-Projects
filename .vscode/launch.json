@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "TaskManager.Main",
+            "projectName": "Python-Projects_bb84007e"
+        },
+        {
+            "type": "java",
             "name": "HelloWorld",
             "request": "launch",
             "mainClass": "HelloWorld",
