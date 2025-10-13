@@ -14,6 +14,7 @@ public class TaskID {
 
     public int createTaskID() {
         int randomTaskID =  (int) (Math.random() * 100_000);
+
         if (taskIDs.contains(randomTaskID)) {
             int newTaskID =  (int) (Math.random() * 100_000);
             taskIDs.add(newTaskID);
