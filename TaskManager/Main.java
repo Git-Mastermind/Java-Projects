@@ -9,6 +9,8 @@ public class Main {
         Time time = new Time();
         Scanner scanner = new Scanner(System.in);
         Tasks tasks = new Tasks();
+        TaskID taskIDs = new TaskID();
+        ImportantTasks importantTasks = new ImportantTasks();
 
         while (true) {
         System.out.println("""
@@ -30,8 +32,9 @@ public class Main {
 
         System.out.print("Task Name: ");
         String taskName = scanner.nextLine();
-        TaskID taskIDs = new TaskID();
+
         int taskID = taskIDs.createTaskID();
+
         taskIDs.addTaskName(taskName);
         
 
@@ -62,16 +65,68 @@ public class Main {
         System.out.print("Task iD: ");
         int taskID = scanner.nextInt();
         scanner.nextLine();
-        TaskID taskIDs = new TaskID();
-        String taskName = taskIDs.returnTaskName(taskID);
-        System.out.println(taskName);
 
+        String taskName = taskIDs.returnTaskName(taskID);
+
+        if (taskName.equals(null)) {
+            System.out.println("No such task Id exists!");
+        }
+        else {
+        System.out.println("1: " + taskName);
+        time.sleep(1500);
+
+        System.out.print("Would you like to remove this task (y/n): ");
+        String removeTaskInput = scanner.nextLine().toLowerCase();
+
+        if (removeTaskInput.equals("y")) {
+            taskIDs.removeTask(taskID);
+            System.out.println("Removing task...");
+            time.sleep(2000);
+            System.out.println("Task removed!");
+            time.sleep(2000);
+        }
+        else if (removeTaskInput.equals("n")) {
+            System.out.println("Task will not be removed");
+            System.out.println("Rebooting Visuals...");
+            time.sleep(2000);
+
+        }
+        }
+        
+
+    }
+
+    else if (optionInput == 3) {
+        time.loadPage(2000);
+
+        StringBuilder formattedTasks = taskIDs.returnFormattedTaskNames();
+
+        System.out.println(formattedTasks);
+        time.sleep(1500);
+
+        System.out.print("Which task would you like to remove? ");
+        int taskRemoveInput = scanner.nextInt();
+        scanner.nextLine();
+
+        int taskRemoveIndex = taskRemoveInput - 1;
+
+        taskIDs.removeTask(taskRemoveIndex);
+
+        System.out.println("Marking task as done...");
+        time.sleep(2000);
+
+        System.out.println("Rebooting Visuals...");
+        time.sleep(1000);
     }
 
     else if (optionInput == 4) {
         time.loadPage(2000);
         System.out.println(tasks.viewTasks());
         
+    }
+    else if (optionInput == 404) {
+        TaskID classTest = new TaskID();
+        classTest.classTest();
     }
     
         }

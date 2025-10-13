@@ -4,12 +4,17 @@ import java.util.ArrayList;
 public class TaskID {
     ArrayList<String> taskNames = new ArrayList<String>();
     ArrayList<Integer> taskIDs = new ArrayList<>();
+    
 
 
     public String returnTaskName(int taskID) {
         int indexOfTaskID = taskIDs.indexOf(taskID);
-        String taskName = taskNames.get(indexOfTaskID);
-        return taskName;
+        if (indexOfTaskID != -1 && indexOfTaskID < taskIDs.size()) {
+            return taskNames.get(indexOfTaskID);
+        }
+        else {
+            return null;
+        }
     }
 
     public int createTaskID() {
@@ -31,6 +36,34 @@ public class TaskID {
     public void addTaskName(String taskName) {
         taskNames.add(taskName);
 
+
+    }
+
+    public void classTest() {
+        System.out.println(taskNames);
+        System.out.println(taskIDs);
+    }
+
+    public String removeTask(int taskID) {
+        int indexOfTaskID = taskIDs.indexOf(taskID);
+
+        if (indexOfTaskID != -1 && indexOfTaskID < taskIDs.size()) {
+            taskIDs.remove(indexOfTaskID);
+            taskNames.remove(indexOfTaskID);
+            return "All Good!";
+        }
+        else {
+            return null;
+        }
+        
+    }
+
+    public StringBuilder returnFormattedTaskNames() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < taskNames.size(); i++) {
+            result.append(i + 1).append(": ").append(taskNames.get(i)).append("\n");  
+        }
+        return result;
     }
 
 
