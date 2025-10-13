@@ -5,27 +5,31 @@ public class Tasks {
     ArrayList<String> taskCategories = new ArrayList<String>();
 
     public void addTask(String taskName, String category, String importance) {
-        if (importance.equals("h")) {
-            ImportantTasks importantTask = new ImportantTasks();
-            importantTask.addImportantTask(taskName, category);
-        }
-        else {
-            tasks.add(taskName);
-            taskCategories.add(category);
-        }
+
+        tasks.add(taskName);
+        taskCategories.add(category);
+
     }
 
-    public String removeTask(String taskName) {
-        if (tasks.contains(taskName)) {
-            tasks.remove(taskName);
-            return "Task Removed!";
-        }
-        else {
-            return "No Task Found!";
-        }
+    public void removeTask(int taskIndex) {
+        tasks.remove(taskIndex);
     }
 
-    public ArrayList<String> viewTasks() {
-        return tasks;
+    public StringBuilder viewTasks() {
+        StringBuilder result = new StringBuilder();
+        if (tasks.size() == 0) {
+            return result.append("No tasks!");
+        }
+        else {
+            for (int i = 0; i < tasks.size(); i++) {
+                result.append(i + 1).append(": ").append(tasks.get(i)).append("\n");
+            }
+            return result;
+        }
+        
+    }
+
+    public void removeTasks(int taskIndex) {
+        tasks.remove(taskIndex);
     }
 }

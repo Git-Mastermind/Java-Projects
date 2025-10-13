@@ -44,18 +44,9 @@ public class TaskID {
         System.out.println(taskIDs);
     }
 
-    public String removeTask(int taskID) {
-        int indexOfTaskID = taskIDs.indexOf(taskID);
-
-        if (indexOfTaskID != -1 && indexOfTaskID < taskIDs.size()) {
-            taskIDs.remove(indexOfTaskID);
-            taskNames.remove(indexOfTaskID);
-            return "All Good!";
-        }
-        else {
-            return null;
-        }
-        
+    public void removeTask(int taskIndex) {
+        taskIDs.remove(taskIndex);
+        taskNames.remove(taskIndex);
     }
 
     public StringBuilder returnFormattedTaskNames() {

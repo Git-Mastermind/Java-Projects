@@ -18,4 +18,11 @@ public class Time {
             System.out.println("Error! Sleep was interrupted!");
         }
     }
+
+    public void returnToMenu(int seconds) {
+        for (int i = seconds; i >= 0; i--) {
+            System.out.println("Returning to Menu in " + i);
+            this.sleep(1000);
+        }
+    }
 }

@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Time time = new Time();
         Scanner scanner = new Scanner(System.in);
-        Tasks tasks = new Tasks();
+        Tasks task = new Tasks();
         TaskID taskIDs = new TaskID();
         ImportantTasks importantTasks = new ImportantTasks();
 
@@ -45,16 +45,13 @@ public class Main {
         String taskImportance = scanner.nextLine().toLowerCase();
 
         if (taskImportance.equals("h")) {
-            ImportantTasks importantTask = new ImportantTasks();
-            importantTask.addImportantTask(taskName, taskCategory);
             int importantTaskID = taskIDs.createTaskID();
-            
-
+            importantTasks.addImportantTask(taskName, importantTaskID);
         }
         else {
-        tasks.addTask(taskName, taskCategory, taskImportance);
+        task.addTask(taskName, taskCategory, taskImportance);
         }
-        System.out.println("Task Successfully added! Your task iD is: " + taskID);
+        System.out.println("Task Successfully added! Your task Id is: " + taskID);
         time.sleep(1500);
         
         
@@ -62,7 +59,7 @@ public class Main {
     else if (optionInput == 2) {
         time.loadPage(2000);
 
-        System.out.print("Task iD: ");
+        System.out.print("Task Id: ");
         int taskID = scanner.nextInt();
         scanner.nextLine();
 
@@ -79,7 +76,8 @@ public class Main {
         String removeTaskInput = scanner.nextLine().toLowerCase();
 
         if (removeTaskInput.equals("y")) {
-            taskIDs.removeTask(taskID);
+            taskIDs.removeTask(0);
+            task.removeTask(0);
             System.out.println("Removing task...");
             time.sleep(2000);
             System.out.println("Task removed!");
@@ -104,7 +102,7 @@ public class Main {
         System.out.println(formattedTasks);
         time.sleep(1500);
 
-        System.out.print("Which task would you like to remove? ");
+        System.out.print("Which task would you like to mark as done? ");
         int taskRemoveInput = scanner.nextInt();
         scanner.nextLine();
 
@@ -121,12 +119,55 @@ public class Main {
 
     else if (optionInput == 4) {
         time.loadPage(2000);
-        System.out.println(tasks.viewTasks());
+
+        StringBuilder tasks = task.viewTasks();
+        System.out.println(tasks);
+        time.sleep(2000);
+
+        time.returnToMenu(5);
+
         
+    }
+    else if (optionInput == 5) {
+        time.loadPage(2000);
+
+        StringBuilder formattedImportantTasks = importantTasks.returnFormattedImportantTasks();
+
+        System.out.println(formattedImportantTasks);
+
+        time.sleep(2000);
+
+        time.returnToMenu(5);
+
+
+    }
+
+    else if (optionInput == 6) {
+        time.loadPage(2000);
+
+        System.out.print("Exit (y/n)? ");
+        String exitInput = scanner.nextLine().toLowerCase();
+
+        if (exitInput.equals("y")) {
+            System.out.println("Goodbye!");
+            System.exit(1);
+        }
+        else if (exitInput.equals("n")) {
+            time.returnToMenu(5);
+        }
     }
     else if (optionInput == 404) {
         TaskID classTest = new TaskID();
         classTest.classTest();
+    }
+
+    else if (optionInput == 4048) {
+        importantTasks.classTest();
+    }
+
+    else {
+        System.out.println("Invalid Input!");
+        time.sleep(2000);
     }
     
         }
