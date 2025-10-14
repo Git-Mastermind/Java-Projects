@@ -108,13 +108,20 @@ public class Main {
 
         int taskRemoveIndex = taskRemoveInput - 1;
 
-        taskIDs.removeTask(taskRemoveIndex);
+        String removeTask = taskIDs.removeTask(taskRemoveIndex);
 
+        if (removeTask.equals("Invalid Task")) {
+            System.out.println("Invalid Task Number!");
+            time.returnToMenu(5);
+        }
+        else {
         System.out.println("Marking task as done...");
         time.sleep(2000);
 
         System.out.println("Rebooting Visuals...");
         time.sleep(1000);
+        }
+        
     }
 
     else if (optionInput == 4) {
