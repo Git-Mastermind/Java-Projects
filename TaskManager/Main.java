@@ -65,7 +65,7 @@ public class Main {
 
         String taskName = taskIDs.returnTaskName(taskID);
 
-        if (taskName.equals(null)) {
+        if (taskName.equals("null")) {
             System.out.println("No such task Id exists!");
         }
         else {

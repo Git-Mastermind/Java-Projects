@@ -13,7 +13,7 @@ public class TaskID {
             return taskNames.get(indexOfTaskID);
         }
         else {
-            return null;
+            return "null";
         }
     }
 
@@ -44,9 +44,24 @@ public class TaskID {
         System.out.println(taskIDs);
     }
 
-    public void removeTask(int taskIndex) {
-        taskIDs.remove(taskIndex);
-        taskNames.remove(taskIndex);
+    public String removeTask(int taskIndex) {
+        try {
+            taskIDs.remove(taskIndex);
+        }
+        catch (IndexOutOfBoundsException e) {
+            return "Invalid Task";
+        }
+
+        try {
+            taskNames.remove(taskIndex);
+        }
+        catch (IndexOutOfBoundsException e) {
+            return "Invalid Task";
+        }
+        return "str";
+
+        
+        
     }
 
     public StringBuilder returnFormattedTaskNames() {
