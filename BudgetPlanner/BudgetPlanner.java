@@ -2,7 +2,7 @@ package BudgetPlanner;
 import java.text.NumberFormat;
 import java.util.Scanner;
 
-public class Main {
+public class BudgetPlanner {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
        Time time = new Time();
