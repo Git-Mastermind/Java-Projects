@@ -3,140 +3,74 @@ import java.util.Scanner;
 
 
 
-public class TaskManager {
+public class Main {
     static Time time = new Time();
     static Tasks task = new Tasks();
     static TaskID taskIDs = new TaskID();
     static ImportantTasks importantTasks = new ImportantTasks();
     static Scanner scanner = new Scanner(System.in);
-
-    public void addTask() {
-        time.loadPage(2000);
-
-        System.out.print("Task Name: ");
-        String taskName = scanner.nextLine();
-
-        int taskID = taskIDs.createTaskID();
-
-        taskIDs.addTaskName(taskName);
+    static TaskManager taskManager = new TaskManager();
+    public static void main(String[] args) {
+        
+        
         
 
-        System.out.print("Category (Ex. Grocery, Travel): ");
-        String taskCategory = scanner.nextLine();
+        while (true) {
+        System.out.println("""
+            Task Manager
+                1: Add Task
+                2: Remove Task
+                3: Mark Task as Done
+                4: View Tasks
+                5: View Important Tasks
+                6: Exit
+            """);
+        
+    System.out.print("Choose an option: ");
+    int optionInput = scanner.nextInt();
+    scanner.nextLine();
 
-        System.out.print("Importance ((H)igh, (M)edium, (L)ow): ");
-        String taskImportance = scanner.nextLine().toLowerCase();
-
-        if (taskImportance.equals("h")) {
-            int importantTaskID = taskIDs.createTaskID();
-            importantTasks.addImportantTask(taskName, importantTaskID);
-        }
-        else {
-        task.addTask(taskName, taskCategory, taskImportance);
-        }
-        System.out.println("Task Successfully added! Your task Id is: " + taskID);
-        time.sleep(1500);
+    if (optionInput == 1) {   
+        taskManager.addTask();
+    }
+    else if (optionInput == 2) {
+        taskManager.removeTask();
     }
 
-    public void removeTask() {
-        time.loadPage(2000);
+    else if (optionInput == 3) {
+        taskManager.markTaskAsDone();
+    }
 
-        System.out.print("Task Id: ");
-        int taskID = scanner.nextInt();
-        scanner.nextLine();
-
-        String taskName = taskIDs.returnTaskName(taskID);
-
-        if (taskName.equals("null")) {
-            System.out.println("No such task Id exists!");
-        }
-        else {
-        System.out.println("1: " + taskName);
-        time.sleep(1500);
-
-        System.out.print("Would you like to remove this task (y/n): ");
-        String removeTaskInput = scanner.nextLine().toLowerCase();
-
-        if (removeTaskInput.equals("y")) {
-            taskIDs.removeTask(0);
-            task.removeTask(0);
-            System.out.println("Removing task...");
-            time.sleep(2000);
-            System.out.println("Task removed!");
-            time.sleep(2000);
-        }
-        else if (removeTaskInput.equals("n")) {
-            System.out.println("Task will not be removed");
-            System.out.println("Rebooting Visuals...");
-            time.sleep(2000);
-
-        }
-
-        }
+    else if (optionInput == 4) {
+        taskManager.viewTasks();
         
     }
+    else if (optionInput == 5) {
+        taskManager.viewImportantTasks();
+    }
 
-    public void markTaskAsDone() {
-        time.loadPage(2000);
+    else if (optionInput == 6) {
+        taskManager.exit();
+    }
+    else if (optionInput == 404) {
+        TaskID classTest = new TaskID();
+        classTest.classTest();
+    }
 
-        StringBuilder formattedTasks = taskIDs.returnFormattedTaskNames();
+    else if (optionInput == 4048) {
+        importantTasks.classTest();
+    }
 
-        System.out.println(formattedTasks);
-        time.sleep(1500);
-
-        System.out.print("Which task would you like to mark as done? ");
-        int taskRemoveInput = scanner.nextInt();
-        scanner.nextLine();
-
-        int taskRemoveIndex = taskRemoveInput - 1;
-
-        String removeTask = taskIDs.removeTask(taskRemoveIndex);
-
-        if (removeTask.equals("Invalid Task")) {
-            System.out.println("Invalid Task Number!");
-            time.returnToMenu(5);
-        }
-        else {
-        System.out.println("Marking task as done...");
+    else {
+        System.out.println("Invalid Input!");
         time.sleep(2000);
-
-        System.out.println("Rebooting Visuals...");
-        time.sleep(1000);
+    }
+    
         }
+        
+
         
     }
 
-    public void viewTasks() {
-        StringBuilder formattedViewTasks = task.viewTasks();
-        System.out.println(formattedViewTasks);
-    }
-
-    public void viewImportantTasks() {
-        time.loadPage(2000);
-
-        StringBuilder formattedImportantTasks = importantTasks.returnFormattedImportantTasks();
-
-        System.out.println(formattedImportantTasks);
-
-        time.sleep(2000);
-
-        time.returnToMenu(5);
-    }
-
-    public void exit() {
-        time.loadPage(2000);
-
-        System.out.print("Exit (y/n)? ");
-        String exitInput = scanner.nextLine().toLowerCase();
-
-        if (exitInput.equals("y")) {
-            System.out.println("Goodbye!");
-            scanner.close();
-            System.exit(1);
-        }
-        else if (exitInput.equals("n")) {
-            time.returnToMenu(5);
-        }
-    }
 }
 
