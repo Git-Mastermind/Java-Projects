@@ -1,4 +1,4 @@
-package BudgetPlanner;
+
 
 public class Balance {
     int totalBalance = 0;

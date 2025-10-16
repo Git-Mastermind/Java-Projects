@@ -1,4 +1,3 @@
-package BudgetPlanner;
 
 public class Expenses {
     Balance balance = new Balance();

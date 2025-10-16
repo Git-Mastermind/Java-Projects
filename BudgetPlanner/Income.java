@@ -1,4 +1,4 @@
-package BudgetPlanner;
+
 import java.util.ArrayList;
 public class Income {
     int checkCode = 67;

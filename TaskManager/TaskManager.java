@@ -157,6 +157,7 @@ public class TaskManager {
 
         if (exitInput.equals("y")) {
             System.out.println("Goodbye!");
+            scanner.close();
             System.exit(1);
         }
         else if (exitInput.equals("n")) {

@@ -1,4 +1,4 @@
-package BudgetPlanner;
+
 
 public class Check {
     int totalCheckValue = 0;
