@@ -31,5 +31,6 @@ public class Tasks {
 
     public void removeTasks(int taskIndex) {
         tasks.remove(taskIndex);
+        tasks.contains("e");
     }
 }

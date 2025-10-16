@@ -1,33 +1,16 @@
 package TaskManager;
 import java.util.Scanner;
-import java.lang.Math;
+
 
 
 public class TaskManager {
-    
-    public static void main(String[] args) {
-        Time time = new Time();
-        Scanner scanner = new Scanner(System.in);
-        Tasks task = new Tasks();
-        TaskID taskIDs = new TaskID();
-        ImportantTasks importantTasks = new ImportantTasks();
+    static Time time = new Time();
+    static Tasks task = new Tasks();
+    static TaskID taskIDs = new TaskID();
+    static ImportantTasks importantTasks = new ImportantTasks();
+    static Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-        System.out.println("""
-            Task Manager
-                1: Add Task
-                2: Remove Task
-                3: Mark Task as Done
-                4: View Tasks
-                5: View Important Tasks
-                6: Exit
-            """);
-        
-    System.out.print("Choose an option: ");
-    int optionInput = scanner.nextInt();
-    scanner.nextLine();
-
-    if (optionInput == 1) {
+    public void addTask() {
         time.loadPage(2000);
 
         System.out.print("Task Name: ");
@@ -53,10 +36,9 @@ public class TaskManager {
         }
         System.out.println("Task Successfully added! Your task Id is: " + taskID);
         time.sleep(1500);
-        
-        
     }
-    else if (optionInput == 2) {
+
+    public void removeTask() {
         time.loadPage(2000);
 
         System.out.print("Task Id: ");
@@ -89,12 +71,12 @@ public class TaskManager {
             time.sleep(2000);
 
         }
+
         }
         
-
     }
 
-    else if (optionInput == 3) {
+    public void markTaskAsDone() {
         time.loadPage(2000);
 
         StringBuilder formattedTasks = taskIDs.returnFormattedTaskNames();
@@ -124,18 +106,12 @@ public class TaskManager {
         
     }
 
-    else if (optionInput == 4) {
-        time.loadPage(2000);
-
-        StringBuilder tasks = task.viewTasks();
-        System.out.println(tasks);
-        time.sleep(2000);
-
-        time.returnToMenu(5);
-
-        
+    public void viewTasks() {
+        StringBuilder formattedViewTasks = task.viewTasks();
+        System.out.println(formattedViewTasks);
     }
-    else if (optionInput == 5) {
+
+    public void viewImportantTasks() {
         time.loadPage(2000);
 
         StringBuilder formattedImportantTasks = importantTasks.returnFormattedImportantTasks();
@@ -145,11 +121,9 @@ public class TaskManager {
         time.sleep(2000);
 
         time.returnToMenu(5);
-
-
     }
 
-    else if (optionInput == 6) {
+    public void exit() {
         time.loadPage(2000);
 
         System.out.print("Exit (y/n)? ");
@@ -164,23 +138,5 @@ public class TaskManager {
             time.returnToMenu(5);
         }
     }
-    else if (optionInput == 404) {
-        TaskID classTest = new TaskID();
-        classTest.classTest();
-    }
-
-    else if (optionInput == 4048) {
-        importantTasks.classTest();
-    }
-
-    else {
-        System.out.println("Invalid Input!");
-        time.sleep(2000);
-    }
-    
-        }
-        
-
-        
-    }
 }
+
