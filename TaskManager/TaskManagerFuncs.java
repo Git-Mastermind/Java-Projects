@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 
 
-public class TaskManager {
+public class TaskManagerFuncs {
     static Time time = new Time();
     static Tasks task = new Tasks();
     static TaskID taskIDs = new TaskID();
@@ -109,6 +109,7 @@ public class TaskManager {
     public void viewTasks() {
         StringBuilder formattedViewTasks = task.viewTasks();
         System.out.println(formattedViewTasks);
+        time.returnToMenu(5);
     }
 
     public void viewImportantTasks() {

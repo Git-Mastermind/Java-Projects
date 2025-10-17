@@ -3,13 +3,13 @@ import java.util.Scanner;
 
 
 
-public class Main {
+public class TaskManager {
     static Time time = new Time();
     static Tasks task = new Tasks();
     static TaskID taskIDs = new TaskID();
     static ImportantTasks importantTasks = new ImportantTasks();
     static Scanner scanner = new Scanner(System.in);
-    static TaskManager taskManager = new TaskManager();
+    static TaskManagerFuncs taskManagerFuncs = new TaskManagerFuncs();
     public static void main(String[] args) {
         
         
@@ -31,26 +31,26 @@ public class Main {
     scanner.nextLine();
 
     if (optionInput == 1) {   
-        taskManager.addTask();
+        taskManagerFuncs.addTask();
     }
     else if (optionInput == 2) {
-        taskManager.removeTask();
+        taskManagerFuncs.removeTask();
     }
 
     else if (optionInput == 3) {
-        taskManager.markTaskAsDone();
+        taskManagerFuncs.markTaskAsDone();
     }
 
     else if (optionInput == 4) {
-        taskManager.viewTasks();
+        taskManagerFuncs.viewTasks();
         
     }
     else if (optionInput == 5) {
-        taskManager.viewImportantTasks();
+        taskManagerFuncs.viewImportantTasks();
     }
 
     else if (optionInput == 6) {
-        taskManager.exit();
+        taskManagerFuncs.exit();
     }
     else if (optionInput == 404) {
         TaskID classTest = new TaskID();
