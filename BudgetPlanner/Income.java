@@ -19,11 +19,11 @@ public class Income {
     }
 
     public void changeBalance(int amount) {
-        totalBalance += amount;
+        balance.changeBalance(amount);
     }
 
     public int returnBalance() {
-        return totalBalance;
+        return balance.returnBalance();
     }
 
     

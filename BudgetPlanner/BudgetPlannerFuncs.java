@@ -6,7 +6,6 @@ public class BudgetPlannerFuncs {
     
     static Income income = new Income();
     static Expenses expense = new Expenses();
-    static Balance balance = new Balance();
     static NumberFormat currency = NumberFormat.getCurrencyInstance();
     static Scanner scanner = new Scanner(System.in);
     static Time time = new Time();
@@ -114,7 +113,7 @@ public class BudgetPlannerFuncs {
             System.out.println("Calculating Balance...");
             time.sleep(1500);
 
-            System.out.println(formattedTotalBalance);
+            System.out.println("Current Balance: " + formattedTotalBalance);
             time.sleep(2000);
             
         }
