@@ -2,11 +2,11 @@
 import java.util.ArrayList;
 public class Income {
     int checkCode = 67;
+    Balance balance = new Balance();
+    int totalBalance = 0;
     public int addIncome(int amount, String method) {
         if (!method.equals("check")) {
-            
-            Balance balance = new Balance();
-            balance.changeBalance(amount);
+            this.changeBalance(amount);
             return 200;
             
         }
@@ -16,6 +16,14 @@ public class Income {
             return checkCode;
             
         }
+    }
+
+    public void changeBalance(int amount) {
+        totalBalance += amount;
+    }
+
+    public int returnBalance() {
+        return totalBalance;
     }
 
     

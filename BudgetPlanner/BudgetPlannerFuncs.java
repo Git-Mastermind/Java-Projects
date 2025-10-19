@@ -2,15 +2,16 @@
 import java.text.NumberFormat;
 import java.util.Scanner;
 
-public class BudgetPlanner {
+public class BudgetPlannerFuncs {
+    
+    static Income income = new Income();
+    static Expenses expense = new Expenses();
+    static Balance balance = new Balance();
+    static NumberFormat currency = NumberFormat.getCurrencyInstance();
+    static Scanner scanner = new Scanner(System.in);
+    static Time time = new Time();
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-       Time time = new Time();
-       Income income = new Income();
-       Expenses expense = new Expenses();
-       Balance balance = new Balance();
-       NumberFormat currency = NumberFormat.getCurrencyInstance();
-       
+        
        while (true) {
         System.out.println("""
                Budget Planner 
@@ -23,7 +24,7 @@ public class BudgetPlanner {
         
         System.out.print("Choose an option: ");
         int optionInput = scanner.nextInt();
-        scanner.nextLine();  
+        scanner.nextLine();
 
         if (optionInput == 1) {
             time.loadPage(2000);
@@ -64,7 +65,7 @@ public class BudgetPlanner {
             }
             else {
                 System.out.println("Income cancelled...");
-                time.returnToMenu(5);
+                
             }
 
 
@@ -97,7 +98,7 @@ public class BudgetPlanner {
             }
             else {
                 System.out.println("Expense cancelled...");
-                time.returnToMenu(5);
+                
             }
 
 
@@ -108,12 +109,14 @@ public class BudgetPlanner {
         if (optionInput == 3) {
             time.loadPage(2000);
 
-            int totalBalance = balance.returnBalance();
+            int totalBalance = income.returnBalance();
+            String formattedTotalBalance = currency.format(totalBalance);
             System.out.println("Calculating Balance...");
             time.sleep(1500);
 
-            System.out.println(totalBalance);
-            time.returnToMenu(5);
+            System.out.println(formattedTotalBalance);
+            time.sleep(2000);
+            
         }
        }
        
