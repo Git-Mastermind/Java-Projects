@@ -10,6 +10,18 @@ public class TaskManagerFuncs {
     static ImportantTasks importantTasks = new ImportantTasks();
     static Scanner scanner = new Scanner(System.in);
 
+    public String titleScreen() {
+        return """
+                Task Manager:
+                    1: Add Task
+                    2: Remove Task
+                    3: Mark Task as Done
+                    4: View Tasks
+                    5: View Important Tasks
+                    6: Exit
+                """;
+    }
+
     public void addTask() {
         time.loadPage(2000);
 
@@ -31,8 +43,11 @@ public class TaskManagerFuncs {
             int importantTaskID = taskIDs.createTaskID();
             importantTasks.addImportantTask(taskName, importantTaskID);
         }
-        else {
+        else if (taskImportance.equals("m") || taskImportance.equals("l")) {
         task.addTask(taskName, taskCategory, taskImportance);
+        }
+        else {
+            this.invalidInput();
         }
         System.out.println("Task Successfully added! Your task Id is: " + taskID);
         time.sleep(1500);
@@ -71,6 +86,9 @@ public class TaskManagerFuncs {
             time.sleep(2000);
 
         }
+        else {
+            this.invalidInput();
+        }
 
         }
         
@@ -97,11 +115,11 @@ public class TaskManagerFuncs {
             time.returnToMenu(5);
         }
         else {
-        System.out.println("Marking task as done...");
-        time.sleep(2000);
+            System.out.println("Marking task as done...");
+            time.sleep(2000);
 
-        System.out.println("Rebooting Visuals...");
-        time.sleep(1000);
+            System.out.println("Rebooting Visuals...");
+            time.sleep(1000);
         }
         
     }
@@ -138,6 +156,14 @@ public class TaskManagerFuncs {
         else if (exitInput.equals("n")) {
             time.returnToMenu(5);
         }
+        else {
+            this.invalidInput();
+        }
+    }
+
+    public void invalidInput() {
+        System.out.println("Invalid Input!");
+        time.sleep(2000);
     }
 }
 
