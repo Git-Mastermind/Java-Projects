@@ -5,4 +5,12 @@ public class Check {
     public void addCheck(int amount) {
         totalCheckValue += amount;
     }
+
+    public int viewChecks() {
+        return totalCheckValue;
+    }
+
+    public void clearChecksValue() {
+        totalCheckValue = 0;
+    }
 }

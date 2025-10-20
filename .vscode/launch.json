@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BudgetPlanner",
+            "request": "launch",
+            "mainClass": "BudgetPlanner",
+            "projectName": "Python-Projects_bb84007e"
+        },
+        {
+            "type": "java",
             "name": "BudgetPlannerFuncs",
             "request": "launch",
             "mainClass": "BudgetPlannerFuncs",

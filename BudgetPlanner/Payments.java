@@ -1,9 +1,10 @@
 
 import java.util.ArrayList;
-public class Income {
+public class Payments {
     int checkCode = 67;
     Balance balance = new Balance();
     int totalBalance = 0;
+    Check check = new Check();
     public int addIncome(int amount, String method) {
         if (!method.equals("check")) {
             this.changeBalance(amount);
@@ -11,8 +12,7 @@ public class Income {
             
         }
         else {
-            Check check = new Check();
-            check.addCheck(amount);
+            this.addCheck(amount);
             return checkCode;
             
         }
@@ -24,6 +24,18 @@ public class Income {
 
     public int returnBalance() {
         return balance.returnBalance();
+    }
+
+    public void addCheck(int amount) {
+        check.addCheck(amount);
+    }
+
+    public int viewChecks() {
+        return check.viewChecks();
+    }
+
+    public void clearChecksValue() {
+        check.clearChecksValue();
     }
 
     
