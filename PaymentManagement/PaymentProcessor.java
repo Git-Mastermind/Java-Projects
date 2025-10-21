@@ -25,7 +25,7 @@ public class PaymentProcessor {
     public void getAuthorizationCode(String authorizationCode) {
         System.out.println(authorizationCode);
         CustomerOrder customer = new CustomerOrder("Eshan Jha", 4444-4444-4444-4444, 123, "136 239th Way SE", "2027/04/05");
-        customer.receivedAuthorizationCode();
+        customer.receivedAuthorizationCode(authorizationCode);
 
     }
 

@@ -1,1 +1,0 @@
-database port = 3306x protocol port = 33060mySQL root password = Welcome!@#123mySQL user password = ILovebooks!@#123
