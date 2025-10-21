@@ -42,6 +42,6 @@ public class CustomerOrder {
     }
 
     public void receivedAuthorizationCode(String authorizationCode) {
-        System.out.println("Authorization Code Received! Code: " + authorizationCode);
+        System.out.println(authorizationCode);
     }
 }
