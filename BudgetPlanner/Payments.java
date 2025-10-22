@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 public class Payments {
     int checkCode = 67;
     Balance balance = new Balance();

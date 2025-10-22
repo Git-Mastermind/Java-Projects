@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -111,13 +111,13 @@ public class Games {
             System.out.println("Computer wins!");
             time.sleep(500);
         }
-
+        scanner.close();
         
 
         
 
     }   
- 
+    
     
 }
 }
