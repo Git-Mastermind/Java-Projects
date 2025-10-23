@@ -1,8 +1,14 @@
 public class Playground {
-    public static void main(String[] args) {
-       int[] numbers = { 1,2,3,4,5 };
-       for (int num : numbers) {
-        System.out.println(num);
-       } 
+    public static int countdown(int n) {
+        if (n == 0) {
+            return n;
+        }
+        else {
+            return countdown(n - 1);
+        }
     }
+    public static void main(String[] args) {
+        int result = countdown(5);
+        System.out.println(result);
+    } 
 }
