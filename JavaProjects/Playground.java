@@ -1,14 +1,14 @@
 public class Playground {
-    public static int countdown(int n) {
-        if (n == 0) {
+    public static int factorial(int n) {
+        if (n == 1) {
             return n;
         }
         else {
-            return countdown(n - 1);
+            return n * factorial(n - 1);
         }
     }
     public static void main(String[] args) {
-        int result = countdown(5);
+        int result = factorial(5);
         System.out.println(result);
     } 
 }
